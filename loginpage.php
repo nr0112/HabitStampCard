@@ -48,19 +48,6 @@
     $pdo = new PDO($dsn, $user, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
     //--------------------------------------------------------------------
 
-    //---------------テーブル作成-------------------------------------------
-    //テーブルを作る
-    $sql = "CREATE TABLE IF NOT EXISTS users"
-    ."("
-    ."id INT AUTO_INCREMENT PRIMARY KEY,"
-    ."mail TEXT,"
-    ."username varchar(20),"
-    ."password TEXT,"
-    ."date_resister TEXT"
-    .");";
-    $stmt = $pdo -> query($sql);
-    //---------------------------------------------------------------------
-
     //セッション開始
     session_start();
     
