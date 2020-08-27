@@ -77,9 +77,18 @@
                       ユーザー名：'.$_SESSION["username_resister"].'<br>
                       パスワード：'. mb_substr($_SESSION["password_resister"],0,2,"UTF-8").str_repeat("*",mb_strlen($_SESSION["password_resister"],"UTF-8")-2).'<br>
                       登録日：'.$_SESSION["date_resister"].'<br>';
-
-                
-                
+                //登録完了後71行目のユーザーIDをもとにテーブルを作成
+                $sql_create_table="CREATE TABLE $id"
+                    ."("
+                    ."date DATE,"
+                    ."loginhistory TIME,"
+                    ."wakeupflag int(1),"
+                    ."photo VARCHAR(128),"
+                    ."comment VARCHAR(128)"
+                    .")"
+                    ."ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;";
+                $stmt = $pdo->query($sql_create_table);
+                //photoのところにはパスを入力する
                 //上記のセッション変数を削除してからログインページに移る(セッションの値を初期化)
                 $_SESSION = array();
                 //セッションを破棄
