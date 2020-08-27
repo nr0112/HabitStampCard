@@ -19,11 +19,12 @@
                     <input type="text" name="username" placeholder="ユーザー名"><br>
                 </label>
                 <label>パスワード</label>
-                    <!--type="password"だとアスタリスクで表示されるようになる-->
-                    <!--パスワードは最小入力文字数を設定した方がいいかも？https://www.tagindex.com/html_tag/form/input_password.html-->
-                    <input type="text" name="password" placeholder="パスワード"><br>
-                    確認用パスワード<br>
-                    <input type="text" name="password2" placeholder="パスワード"><br></p>
+                    <p><input type="text" name="password" placeholder="パスワード"></p>
+                    <p>確認用パスワード</p>
+                    <p><input type="text" name="password2" placeholder="パスワード"></p>
+                <label>目標起床時間
+                    <input type="text" name="wakeup" placeholder="起床時間"
+                </label>
         </fieldset>
 
         <input type="submit" name="registration" value="アカウント作成"></p>
