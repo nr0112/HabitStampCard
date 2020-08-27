@@ -9,8 +9,7 @@
     $pdo = new PDO($dsn, $user, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
     //--------------------------------------------------------------------
 
-    //---------------テーブル作成-------------------------------------------
-    //テーブルを作る
+    //---------------テーブル1------------------------------------------
     $sql = "CREATE TABLE IF NOT EXISTS db_users"
     ."("
     ."id INT AUTO_INCREMENT PRIMARY KEY,"
