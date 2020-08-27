@@ -23,7 +23,7 @@
                     <p>確認用パスワード</p>
                     <p><input type="text" name="password2" placeholder="パスワード"></p>
                 <label>目標起床時間
-                    <input type="text" name="wakeup" placeholder="起床時間"
+                    <input type="text" name="wakeup" placeholder="起床時間">
                 </label>
         </fieldset>
 
