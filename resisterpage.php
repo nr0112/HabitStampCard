@@ -33,12 +33,8 @@
 
     <?php
 
-    //-----------------データベース接続設定----------------------------------
-    $dsn = $dsn = 'mysql:dbname=***;host=localhost';
-    $user = '***';
-    $password = '***';
-    $pdo = new PDO($dsn, $user, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
-    //--------------------------------------------------------------------
+    require_once("pdo.php");
+    $pdo = pdo_connect();
 
     //登録情報をデータベースに登録する
 
