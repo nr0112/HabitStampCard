@@ -10,34 +10,19 @@
     <header>
         <h1>習慣アプリ</h1>
     </header>
-
-    <section class="form">
-        <form action="" method="POST">
-        <!--flexboxの親要素-->
-        <div class="f-container">
-            <!--flexboxの子要素1-->
-            <div class="f-item">
-                <h1>ログイン<h1>
-                    <p>
-                    ユーザーID<br>
-                    <input type="text" name="mail" placeholder="メールアドレス"><br>
-                    パスワード<br>
-                    <input type="text" name="password" placeholder="パスワード"><br>
-                    <input type="submit" name="submit_login" value="ログイン"></p> 
-            </div>
-            <!--flexboxの子要素2-->
-            <div class="f-item">
-                <h1>新規登録<h1>
-                    <p>メールアドレス<br>
-                    <input type="text" name="new_mail" placeholder="メールアドレス"><br>
-                    <input type="submit" name="submit_register" value="送信"></p>
-            </div>
-        </div>
+        <h1>ログイン<h1>
+            <p>
+            ユーザーID<br>
+            <input type="text" name="mail" placeholder="メールアドレス"><br>
+            パスワード<br>
+            <input type="text" name="password" placeholder="パスワード"><br>
+            <input type="submit" name="submit_login" value="ログイン"></p>
+        <h1>新規登録<h1>
+            <p>メールアドレス<br>
+            <input type="text" name="new_mail" placeholder="メールアドレス"><br>
+            <input type="submit" name="submit_register" value="送信"></p>
         </form>
     </section>
-
-    <!--phpの処理で表示されるメッセージ文の文字の設定を行う-->
-    <div class="message">
 
     <?php
     
@@ -149,6 +134,5 @@
     }
 
     ?>
-    </div>
     </body>
 </html>
