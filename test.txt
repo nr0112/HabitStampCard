@@ -1,7 +1,4 @@
 テスト
 ginga test
-<<<<<<< HEAD
 rina  test
-=======
 comit
->>>>>>> 11846cc906abf1df1e39aabb5919fb4f74fc58d6
