@@ -1,5 +1,5 @@
 <?php
-    function returnimg($day){
+    function return_img($day){
         global $img;
         if(catchTrue($day)){
         return '<th>'.$img.'</th>';
@@ -47,7 +47,7 @@
     $stamp .=str_repeat('<th></th>', $youbi);
     for($day = 1; $day <= $day_count; $day++, $youbi++){
         $date = $ym.'-'.$day;
-        $stamp .=returnimg($day);
+        $stamp .=return_img($day);
         if($today == $date){
             $week.='<td class="today">'. $day;
         }else{
