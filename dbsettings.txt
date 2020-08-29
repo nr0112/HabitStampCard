@@ -1,6 +1,6 @@
-<!-- データベース設定  メモ-->
+データベース設定に関するメモ書き
 
-//---------------テーブル1------------------------------------------
+--------------テーブル1---------------------------
     $sql = "CREATE TABLE IF NOT EXISTS db_users"
     ."("
     ."id INT AUTO_INCREMENT PRIMARY KEY,"
@@ -11,4 +11,18 @@
     ."date_resister TEXT"
     .");";
     $stmt = $pdo -> query($sql);
-//---------------------------------------------------------------------
+------------------------------------------------
+
+--------------テーブル2---------------------------
+ユーザーごとのテーブル作成(会員登録時に割り振られたidによって作成)
+    $sql_create_table="CREATE TABLE $id"
+    ."("
+    ."date DATE,"
+    ."loginhistory TIME,"
+    ."wakeupflag int(1),"
+    ."photo VARCHAR(128),"
+    ."comment VARCHAR(128)"
+    .")"
+    ."ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;";
+    $stmt = $pdo->query($sql_create_table);
+------------------------------------------------
