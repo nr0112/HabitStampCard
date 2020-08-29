@@ -19,7 +19,7 @@
         //あらかじめ決めたパスワードと一致していたときにログイン
         if ($managerID=="oneteam_second" && $managerPASS="oneteam"){
             //管理者用ページにリダイレクト
-            header("Location: managementpage");
+            header("Location: https://tb-220025.tech-base.net/managementpage.php");
         }
     }else{
         echo '管理者用ページにログインできません。IDかパスワードが間違っています！';
