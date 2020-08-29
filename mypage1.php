@@ -1,5 +1,6 @@
 <?php
     function return_img($day){
+        // スタンプをつけるかつけないか
         global $img;
         if(catchTrue($day)){
         return '<th>'.$img.'</th>';
@@ -7,7 +8,8 @@
         return '<th></th>';
     }
     function catchTrue($day){
-        // スタンプを押すか押さないかの判定
+        // スタンプをつけるときの条件分岐
+        //この関数に渡された日にログインしているかを判定する
         global $timestamp;
         $ymj ="";
         $ymj = date('Y-m-j', mktime(0, 0, 0, date('m', $timestamp), $day, date('Y', $timestamp)));
