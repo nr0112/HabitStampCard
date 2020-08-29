@@ -1,4 +1,5 @@
 <?php
+    // スタンプをつけるかつけないか
     function returnimg($day){
         global $img;
         if(catchTrue($day)){
@@ -6,10 +7,12 @@
         }
         return '<th></th>';
     }
+    // スタンプをつけるときの条件分岐
     function catchTrue($day){
         global $ym;
         $ymm ="";
         $ymm .= $ym.'-'.$day;
+        // $aをデータベースから引っ張ってくる
         global $a;
         if($ymm == $a){
         return TRUE;
