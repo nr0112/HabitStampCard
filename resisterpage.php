@@ -72,7 +72,7 @@
             $_SESSION["date_resister"] = $date_resister;
             
             try{
-                $sql_insert = 'INSERT INTO db_users (mail, username, password, date_resister) VALUES(:mail, :username, :password, :date_resister)';
+                $sql_insert = 'INSERT INTO db_users (mail, username, password, date_resister, wakeup) VALUES(:mail, :username, :password, :date_resister, :wakeup)';
                 $stmt_insert = $pdo -> prepare($sql_insert);
                 $stmt_insert -> bindParam(':mail', $mail, PDO::PARAM_STR);
                 $stmt_insert -> bindParam(':username', $username, PDO::PARAM_STR);
