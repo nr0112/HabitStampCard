@@ -14,6 +14,8 @@
         $ymm .= $ym.'-'.$day;
         // $aをデータベースから引っ張ってくる
         global $a;
+        // global $aにはデータベースから引っ張ってきた日付が入る。
+        // この部分ではまだwakeupflagには接続していないためログインした日にちすべてにスタンプが張られる。
         if($ymm == $a){
         return TRUE;
         }
@@ -48,7 +50,7 @@
     $stamp .=str_repeat('<th></th>', $youbi);
     for($day = 1; $day <= $day_count; $day++, $youbi++){
         $date = $ym.'-'.$day;
-        $stamp .=returnimg($day);
+        $stamp .=return_img($day);
         if($today == $date){
             $week.='<td class="today">'. $day;
         }else{
