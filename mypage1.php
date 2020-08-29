@@ -1,27 +1,76 @@
 <?php
-    // スタンプをつけるかつけないか
-    function returnimg($day){
+    function return_img($day){
         global $img;
         if(catchTrue($day)){
         return '<th>'.$img.'</th>';
         }
         return '<th></th>';
     }
-    // スタンプをつけるときの条件分岐
     function catchTrue($day){
-        global $ym;
-        $ymm ="";
-        $ymm .= $ym.'-'.$day;
-        // $aをデータベースから引っ張ってくる
-        global $a;
-        // global $aにはデータベースから引っ張ってきた日付が入る。
-        // この部分ではまだwakeupflagには接続していないためログインした日にちすべてにスタンプが張られる。
-        if($ymm == $a){
+        // スタンプを押すか押さないかの判定
+        global $timestamp;
+        $ymj ="";
+        $ymj = date('Y-m-j', mktime(0, 0, 0, date('m', $timestamp), $day, date('Y', $timestamp)));
+        require_once("pdo.php");
+        $pdo = pdo_connect();
+        $select = "SELECT * FROM datebase_1 WHERE date=:date";
+        $stmt = $pdo->prepare($select);
+        $stmt ->bindValue(':date', $ymj);
+        $stmt->execute();
+        $results = $stmt->fetchAll();
+        if(count($results) != 0){
         return TRUE;
         }
     }
+    function login(){
+        // ログインしたらデータベースに書き込まれるように
+        // この関数を読み込むとログイン情報がデータベースに書き込まれる
+        // require_once("mypage1.php");
+        // login($user_ID);
+        // 上記二行でデータベースに書き込まれるようにしたい
+        require_once("pdo.php");
+        $pdo = pdo_connect();
+        $one = 1;
+        $comment = "";
+        $photo = "";
+        $insert_tmp = "INSERT INTO datebase_1(date, logintime, comment, photo, wakeupflag) VALUES (now(), now(), :comment, :photo, :wakeupflag)";
+        $login = $pdo -> prepare($insert_tmp);
+        $login -> bindParam(":comment", $comment, PDO::PARAM_STR);
+        $login -> bindParam(":photo", $photo, PDO::PARAM_STR);
+        $login -> bindParam (":wakeupflag", $one, PDO::PARAM_INT);
+        $login -> execute();
+        return;
+    }
+    function show(){
+        require_once("pdo.php");
+        $pdo = pdo_connect();
+        global $day;
+        $select = "SELECT * FROM datebase_1 WHERE date=:date AND wakeupflag=1";
+        $stmt = $pdo->prepare($select);
+        $stmt ->bindValue(':date', $day);
+        $stmt->execute();
+        $buf = $stmt->fetchAll();
+        foreach ($buf as $row){
+            var_dump($row);
+            echo "<br>";
+        }
+        return;
+    }
+    function testshow(){
+        require_once("pdo.php");
+        $pdo = pdo_connect();
+        $select = "SELECT *FROM datebase_1";
+        $stmt = $pdo ->query($select);
+        $buf = $stmt->fetchAll();
+        foreach ($buf as $row){
+            echo $row["date"];
+            echo "<br>";
+        }
+        return;
+    }
+    // タイムゾーン
     date_default_timezone_set('Asia/Tokyo');
-
+    // 今月のままでいいのか？それとも別の月か？
     if(isset($_GET['ym'])){
         $ym = $_GET['ym'];
     }else{
@@ -34,16 +83,23 @@
     }
     $today = date('Y-m-j');
     $html_title = date('Y年n月', $timestamp);
+
+    // 次月と先月の設定
     $prev = date('Y-m', mktime(0, 0, 0, date('m', $timestamp)-1, 1, date('Y', $timestamp)));
     $next = date('Y-m', mktime(0, 0, 0, date('m', $timestamp)+1, 1, date('Y', $timestamp)));
     $day_count = date('t', $timestamp);
     $youbi = date('w', mktime(0, 0, 0, date('m', $timestamp), 1, date('Y', $timestamp)));
+    
+    
+    // 初期設定
 
+
+    // login();
     $weeks = [];
     $stamps = [];
     $week = '';
     $stamp ='';
-    $a = date('Y-m-j');
+    // $imgの中にスタンプの画像を入れる、現時点ではえがおのくま
     $img = '<img src="https://3.bp.blogspot.com/-p1j5JG0kN8I/Wn1ZUJ3CbuI/AAAAAAABKK4/hKPhQjTXXv0o3QXh1J0rQ4TaFqGqUGu7ACLcBGAs/s800/animal_smile_kuma.png
     " alt="" width = "50px" height="50px">';
     $week .=str_repeat('<td></td>', $youbi);
@@ -69,24 +125,6 @@
             $stamp ='';
         }
     }
-    // echo $day_count;
-    // echo $youbi;
-
-    // echo "<BR>";
-    
-    // echo $html_title;
-    // echo $timestamp;
-    // echo "<br>";
-    // echo $ym;
-
-    // echo "<br>";
-    // echo "<br>";
-
-    // $time = mktime();
-    // var_dump(date('Y/m/d/h/i/s', $time));
-    // $te = date('w', $timestamp);
-    // echo $te;
-    // var_dump($weeks);
 ?>
 
 <!DOCTYPE html>
