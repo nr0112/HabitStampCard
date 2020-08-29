@@ -46,15 +46,15 @@
                 $stmt_select = $pdo -> prepare($sql_select);
                 $stmt_select -> bindParam(':mail', $mail, PDO::PARAM_STR);
                 $stmt_select -> execute();
-                //レコードを呼び出し元に返す/配列として(https://www.php.net/manual/ja/pdostatement.fetch.php)
+                //レコードを呼び出し元に返す
                 $result = $stmt_select -> fetch(PDO::FETCH_ASSOC);
                 
                 //password_veryfy(認証したいパスワード,ハッシュ化されたパスワード)
                 if (password_verify($password, $result['password'])){
-                    //セッションにusernameを保存=識別子としてログイン状態を保持するセッション変数を作成(http://develog.hatenablog.com/entry/2016/12/21/084007)
+                    //セッションにusernameを保存=識別子としてログイン状態を保持するセッション変数を作成
                     $_SESSION["username"] = $result['username'];
-                    //メイン画面へリダイレクト
-                    header("Location: https://tb-220025.tech-base.net/4_mainpage.php");
+                    //mypage1へリダイレクト
+                    header("Location: https://tb-220025.tech-base.net/mypage1.php");
                     //処理終了
                     exit();
 
