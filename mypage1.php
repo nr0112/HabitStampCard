@@ -11,6 +11,8 @@
         $ymm ="";
         $ymm .= $ym.'-'.$day;
         global $a;
+        // global $aにはデータベースから引っ張ってきた日付が入る。
+        // この部分ではまだwakeupflagには接続していないためログインした日にちすべてにスタンプが張られる。
         if($ymm == $a){
         return TRUE;
         }
