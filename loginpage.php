@@ -4,26 +4,38 @@
     <head>
         <meta charset="UTF-8">
         <title>ログイン&新規登録</title>
+        <link rel="stylesheet" href="loginpage.css">
     </head>
     <body>
     
     <header>
-        <h1>習慣アプリ</h1>
+        <h1>習慣スタンプカード</h1>
     </header>
-        <h1>ログイン<h1>
-            <p>
-            ユーザーID<br>
-            <input type="text" name="mail" placeholder="メールアドレス"><br>
-            パスワード<br>
-            <input type="text" name="password" placeholder="パスワード"><br>
-            <input type="submit" name="submit_login" value="ログイン"></p>
-        <h1>新規登録<h1>
-            <p>メールアドレス<br>
-            <input type="text" name="new_mail" placeholder="メールアドレス"><br>
-            <input type="submit" name="submit_register" value="送信"></p>
-        </form>
-    </section>
 
+    <main class="form">
+        <form action="" method="POST">
+            <div class="form_set">
+                <div class="set">
+                    <h2>ログイン<h2>
+                        <h3>ユーザーID<h3>
+                        <p><input type="text" name="mail" placeholder="メールアドレス"></p>
+                        <h3>パスワード</h3>
+                        <p><input type="text" name="password" placeholder="パスワード"></p>
+                        <p><input type="submit" name="submit_login" value="ログイン"></p>
+                </div>
+                <div class="set">
+                    <h2>新規登録<h2>
+                        <h3>メールアドレス<h3>
+                        <p><input type="text" name="new_mail" placeholder="メールアドレス"></p>
+                        <p><input type="submit" name="submit_register" value="送信"></p>
+                </div>              
+            </div>
+        </form>
+    </main>
+
+    <footer>
+    <a href="management_loginpage.php">管理者ページ</a>
+    
     <?php
     
     require_once("pdo.php");
@@ -134,5 +146,7 @@
     }
 
     ?>
+
+    </footer>
     </body>
 </html>
