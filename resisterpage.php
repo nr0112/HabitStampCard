@@ -92,10 +92,15 @@
                       目標起床時間:'.$_SESSION["wakeup"].'<br>;
                       登録日：'.$_SESSION["date_resister"].'<br>';
                 //登録完了後71行目のユーザーIDをもとにテーブルを作成
-                $sql_create_table="CREATE TABLE $id"
+                $name_id = "";
+                $name_id .= "user_ID_".$id;
+                // ↑で$idを数字から名前に加工
+                // 例：$id = 1の場合
+                // 　$name_id = user_ID_1　　(str型)
+                $sql_create_table="CREATE TABLE $name_id"
                     ."("
                     ."date DATE,"
-                    ."loginhistory TIME,"
+                    ."logintime DATETIME,"
                     ."wakeupflag int(1),"
                     ."photo VARCHAR(128),"
                     ."comment VARCHAR(128)"
