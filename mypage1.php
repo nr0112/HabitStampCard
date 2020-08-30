@@ -163,7 +163,7 @@
     $stamp .=str_repeat('<th></th>', $youbi);
     for($day = 1; $day <= $day_count; $day++, $youbi++){
         $date = $ym.'-'.$day;
-        $stamp .=return_img($day, $user_name);
+        $stamp .=return_img($day, $name_ID);
         if($today == $date){
             $week.='<td class="today">'. $day;
         }else{
