@@ -1,5 +1,5 @@
 <?php
-    function return_img($day){
+    function return_img($day, $user_name){
         // スタンプをつけるかつけないか
         global $img;
         if(catchTrue($day)){
@@ -7,7 +7,7 @@
         }
         return '<th></th>';
     }
-    function catchTrue($day){
+    function catchTrue($day, $user_name){
         // スタンプをつけるときの条件分岐
         //この関数に渡された日にログインしているかを判定する
         global $timestamp;
@@ -15,7 +15,7 @@
         $ymj = date('Y-m-j', mktime(0, 0, 0, date('m', $timestamp), $day, date('Y', $timestamp)));
         require_once("pdo.php");
         $pdo = pdo_connect();
-        $select = "SELECT * FROM datebase_1 WHERE date=:date";
+        $select = "SELECT * FROM $user_name WHERE date=:date";
         $stmt = $pdo->prepare($select);
         $stmt ->bindValue(':date', $ymj);
         $stmt->execute();
@@ -24,7 +24,7 @@
         return TRUE;
         }
     }
-    function login(){
+    function login($user_name){
         // ログインしたらデータベースに書き込まれるように
         // この関数を読み込むとログイン情報がデータベースに書き込まれる
         // require_once("mypage1.php");
@@ -35,7 +35,7 @@
         $one = 1;
         $comment = "";
         $photo = "";
-        $insert_tmp = "INSERT INTO datebase_1(date, logintime, comment, photo, wakeupflag) VALUES (now(), now(), :comment, :photo, :wakeupflag)";
+        $insert_tmp = "INSERT INTO $user_name(date, logintime, comment, photo, wakeupflag) VALUES (now(), now(), :comment, :photo, :wakeupflag)";
         $login = $pdo -> prepare($insert_tmp);
         $login -> bindParam(":comment", $comment, PDO::PARAM_STR);
         $login -> bindParam(":photo", $photo, PDO::PARAM_STR);
@@ -43,11 +43,11 @@
         $login -> execute();
         return;
     }
-    function show(){
+    function show($user_name){
         require_once("pdo.php");
         $pdo = pdo_connect();
         global $day;
-        $select = "SELECT * FROM datebase_1 WHERE date=:date AND wakeupflag=1";
+        $select = "SELECT * FROM $user_name WHERE date=:date AND wakeupflag=1";
         $stmt = $pdo->prepare($select);
         $stmt ->bindValue(':date', $day);
         $stmt->execute();
@@ -58,10 +58,10 @@
         }
         return;
     }
-    function testshow(){
+    function testshow($user_name){
         require_once("pdo.php");
         $pdo = pdo_connect();
-        $select = "SELECT *FROM datebase_1";
+        $select = "SELECT *FROM $user_name";
         $stmt = $pdo ->query($select);
         $buf = $stmt->fetchAll();
         foreach ($buf as $row){
@@ -97,6 +97,9 @@
 
 
     // login();
+    $user_name = "datebase_1";
+    // ここをセッションか何かで受け取ることで、ユーザー分けできるようにしたい。
+
     $weeks = [];
     $stamps = [];
     $week = '';
@@ -108,7 +111,7 @@
     $stamp .=str_repeat('<th></th>', $youbi);
     for($day = 1; $day <= $day_count; $day++, $youbi++){
         $date = $ym.'-'.$day;
-        $stamp .=return_img($day);
+        $stamp .=return_img($day, $user_name);
         if($today == $date){
             $week.='<td class="today">'. $day;
         }else{
