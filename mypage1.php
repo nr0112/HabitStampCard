@@ -1,5 +1,4 @@
 <?php
-<<<<<<< Updated upstream
         //---------------テーブル1------------------------------------------
         // $sql = "CREATE TABLE IF NOT EXISTS db_users"
         // ."("
@@ -12,9 +11,6 @@
         // .");";
         // $stmt = $pdo -> query($sql);
         //---------------------------------------------------------------------
-=======
-    // スタンプをつける関数
->>>>>>> Stashed changes
     function return_img($day, $user_name){
         global $img;
         if(catchTrue($day, $user_name)){
