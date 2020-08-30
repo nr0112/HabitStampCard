@@ -7,37 +7,32 @@
         <link rel="stylesheet" href="resisterpage.css">
         <style>
             legend{
-                display: flex;
-                flex-direction: column;
+                width: 100px;
+                height: 30px;
+                font-size: 20px;
+                background-color: skyblue;
+                margin-bottom: 10px;
+            }
+            label, input{
+                display: block;
+            }
+            .botton{
+                margin-top: 20px;
             }
 
         </style>
     </head>
     <body>
-
-
     <form action="" method="POST">
         <!--本登録用入力フォーム--> 
-        <fieldset>
             <legend>基本情報</legend>
-                <label>登録用メールアドレス
-                    <input type="text" name="new_mail" placeholder="メールアドレス">
-                </label>
-                <label>ユーザー名
-                    <input type="text" name="username" placeholder="ユーザー名">
-                </label>
-                <label>パスワード
-                    <input type="text" name="password" placeholder="パスワード">
-                </label>
-                <label>確認用パスワード
-                    <input type="text" name="password2" placeholder="パスワード">
-                </label>
-                <label>目標起床時間
-                    <input type="time" name="wakeup" placeholder="起床時間">
-                </label>
-        </fieldset>
-
-        <input type="submit" name="registration" value="アカウント作成"></p>
+                <label>登録用メールアドレス<input type="text" name="new_mail" placeholder="メールアドレス"></label>
+                <label>ユーザー名<input type="text" name="username" placeholder="ユーザー名"></label>
+                <label>パスワード<input type="text" name="password" placeholder="パスワード"></label>
+                <label>確認用パスワード<input type="text" name="password2" placeholder="パスワード"></label>
+                <label>目標起床時間<input type="time" name="wakeup" placeholder="起床時間"></label>
+                
+                <input type="submit" name="registration" value="アカウント作成" class="botton">
 
     </form>
 
