@@ -1,4 +1,5 @@
 <?php
+<<<<<<< Updated upstream
         //---------------テーブル1------------------------------------------
         // $sql = "CREATE TABLE IF NOT EXISTS db_users"
         // ."("
@@ -11,6 +12,9 @@
         // .");";
         // $stmt = $pdo -> query($sql);
         //---------------------------------------------------------------------
+=======
+    // スタンプをつける関数
+>>>>>>> Stashed changes
     function return_img($day, $user_name){
         global $img;
         if(catchTrue($day, $user_name)){
@@ -18,6 +22,7 @@
         }
         return '<th></th>';
     }
+    // スタンプをつけるかどうか判定する関数
     function catchTrue($day, $user_name){
         global $timestamp;
         $ymj ="";
@@ -123,7 +128,7 @@
     $week .=str_repeat('<td></td>', $youbi);
     $stamp .=str_repeat('<th></th>', $youbi);
     for($day = 1; $day <= $day_count; $day++, $youbi++){
-        $date = $ym.'-'.$day;
+        $date = $ym.'-'.$dayx;
         $stamp .=return_img($day, $user_name);
         if($today == $date){
             $week.='<td class="today">'. $day;
