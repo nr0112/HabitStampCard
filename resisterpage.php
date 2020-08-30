@@ -5,6 +5,13 @@
         <meta charset="UTF-8">
         <title>本登録ページ</title>
         <link rel="stylesheet" href="resisterpage.css">
+        <style>
+            legend{
+                display: flex;
+                flex-direction: column;
+            }
+
+        </style>
     </head>
     <body>
 
