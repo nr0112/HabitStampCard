@@ -134,7 +134,8 @@
     $day_count = date('t', $timestamp);
     $youbi = date('w', mktime(0, 0, 0, date('m', $timestamp), 1, date('Y', $timestamp)));
     
-    $user_name = "datebase_1";
+    session_start();
+    
     $id = 1;
     $name_ID = "";
     $name_ID .= "user_ID_".$id;
@@ -148,7 +149,7 @@
         $now_time = date('H:i');
         
     }
-    login($user_name);
+    login($name_ID);
     
     // ここでログインしている$user_nameを変えるだけでおそらくユーザーを変えることができる。
     // full_testshow($user_name);
