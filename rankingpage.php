@@ -6,6 +6,5 @@
         <title>ランキング掲示板</title>
     </head>
     <body>
-
     </body>
 </html>
