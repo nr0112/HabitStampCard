@@ -4,6 +4,20 @@
     <head>
         <meta charset="UTF-8">
         <title>管理者専用ログインページ</title>
+        <style>
+            legend{
+                font-size: 20px;
+                width: 200px;
+                height: 25px;
+                background-color: skyblue;
+            }
+            label, input{
+                display: block;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+        </style>
+    </head>
     <body>
         <form action="" method="POST">
             <legend>管理者専用ログイン</legend>
