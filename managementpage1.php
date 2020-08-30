@@ -71,22 +71,24 @@
                 }
             }
 
-            function testshow($user_name){
-                require_once("pdo.php");
-                $pdo = pdo_connect();
-                global $day;
-                $select = "SELECT * FROM $user_name WHERE date=:date AND wakeupflag=1";
-                $stmt = $pdo->prepare($select);
-                $stmt ->bindValue(':date', $day);
-                $stmt->execute();
-                $buf = $stmt->fetchAll();
-                foreach ($buf as $row){
-                    var_dump($row);
-                    echo "<br>";
-                }
-                return;
-            }
-
+            //今日の日付だけを見る
+            // function testshow($user_name){
+            //     require_once("pdo.php");
+            //     $pdo = pdo_connect();
+            //     global $day;
+            //     $select = "SELECT * FROM $user_name WHERE date=:date AND wakeupflag=1";
+            //     $stmt = $pdo->prepare($select);
+            //     $stmt ->bindValue(':date', $day);
+            //     $stmt->execute();
+            //     $buf = $stmt->fetchAll();
+            //     foreach ($buf as $row){
+            //         var_dump($row);
+            //         echo "<br>";
+            //     }
+            //     return;
+            // }
+            
+            //全ての日付を参照
             function full_testshow($user_name){
                 require_once("pdo.php");
                 $pdo = pdo_connect();
