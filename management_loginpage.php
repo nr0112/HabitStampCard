@@ -6,9 +6,10 @@
         <title>管理者専用ログインページ</title>
     <body>
         <form action="" method="POST">
-            <input type="text" name="managerID" placeholder="管理者用ID">
-            <input type="number" name="managerPASS" placeholder="管理者用パスワード">
-            <input type="submit" name="manager_submit">
+            <legend>管理者専用ログイン</legend>
+                <label><input type="text" name="managerID" placeholder="管理者用ID"></label>
+                <label><input type="number" name="managerPASS" placeholder="管理者用パスワード"></label>
+                <label><input type="submit" name="manager_submit"></label>
         </form>
     </body>
     <?php
@@ -21,6 +22,10 @@
             //管理者用ページにリダイレクト
             header("Location: https://tb-220025.tech-base.net/managementpage.php");
         }
+
+    }elseif($_POST["managerID"]="" && $_POST["managerPASS"]=""){
+        echo 'IDとパスワードを入力してください。管理者しかログインできません。';
+
     }else{
         echo '管理者用ページにログインできません。IDかパスワードが間違っています！';
     }
