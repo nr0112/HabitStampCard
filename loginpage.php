@@ -65,6 +65,7 @@
                 if (password_verify($password, $result['password'])){
                     //セッションにusernameを保存=識別子としてログイン状態を保持するセッション変数を作成
                     $_SESSION["username"] = $result['username'];
+                    $_SESSION["ID"] = $result['id'];
                     //mypage1へリダイレクト
                     header("Location: https://tb-220025.tech-base.net/mypage1.php");
                     //処理終了
