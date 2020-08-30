@@ -135,8 +135,8 @@
     $youbi = date('w', mktime(0, 0, 0, date('m', $timestamp), 1, date('Y', $timestamp)));
     
     session_start();
-    
-    $id = 1;
+
+    $id = $_SESSION['ID'];
     $name_ID = "";
     $name_ID .= "user_ID_".$id;
     // echo $name_ID;
