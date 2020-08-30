@@ -1,15 +1,12 @@
 <?php
     function return_img($day, $user_name){
-        // スタンプをつけるかつけないか
         global $img;
-        if(catchTrue($day)){
+        if(catchTrue($day, $user_name)){
         return '<th>'.$img.'</th>';
         }
         return '<th></th>';
     }
     function catchTrue($day, $user_name){
-        // スタンプをつけるときの条件分岐
-        //この関数に渡された日にログインしているかを判定する
         global $timestamp;
         $ymj ="";
         $ymj = date('Y-m-j', mktime(0, 0, 0, date('m', $timestamp), $day, date('Y', $timestamp)));
@@ -25,25 +22,31 @@
         }
     }
     function login($user_name){
-        // ログインしたらデータベースに書き込まれるように
-        // この関数を読み込むとログイン情報がデータベースに書き込まれる
-        // require_once("mypage1.php");
-        // login($user_ID);
-        // 上記二行でデータベースに書き込まれるようにしたい
+        // ログイン処理
         require_once("pdo.php");
         $pdo = pdo_connect();
-        $one = 1;
+        $wakeupflag = 1;
         $comment = "";
         $photo = "";
+        $select = "SELECT * FROM $user_name WHERE date=:date";
+        $stmt = $pdo->prepare($select);
+        $stmt ->bindValue(':date', date('Y-m-j'));
+        $stmt->execute();
+        $results = $stmt->fetchAll();
+        // echo "<br>".count($results)."<br>";
+        // 今日ログインした情報がなかったら
+        if(count($results) == 0)
+        {
         $insert_tmp = "INSERT INTO $user_name(date, logintime, comment, photo, wakeupflag) VALUES (now(), now(), :comment, :photo, :wakeupflag)";
         $login = $pdo -> prepare($insert_tmp);
         $login -> bindParam(":comment", $comment, PDO::PARAM_STR);
         $login -> bindParam(":photo", $photo, PDO::PARAM_STR);
-        $login -> bindParam (":wakeupflag", $one, PDO::PARAM_INT);
+        $login -> bindParam (":wakeupflag", $wakeupflag, PDO::PARAM_INT);
         $login -> execute();
+        }
         return;
     }
-    function show($user_name){
+    function testshow($user_name){
         require_once("pdo.php");
         $pdo = pdo_connect();
         global $day;
@@ -58,7 +61,7 @@
         }
         return;
     }
-    function testshow($user_name){
+    function full_testshow($user_name){
         require_once("pdo.php");
         $pdo = pdo_connect();
         $select = "SELECT *FROM $user_name";
@@ -70,9 +73,8 @@
         }
         return;
     }
-    // タイムゾーン
     date_default_timezone_set('Asia/Tokyo');
-    // 今月のままでいいのか？それとも別の月か？
+
     if(isset($_GET['ym'])){
         $ym = $_GET['ym'];
     }else{
@@ -85,26 +87,24 @@
     }
     $today = date('Y-m-j');
     $html_title = date('Y年n月', $timestamp);
-
-    // 次月と先月の設定
     $prev = date('Y-m', mktime(0, 0, 0, date('m', $timestamp)-1, 1, date('Y', $timestamp)));
     $next = date('Y-m', mktime(0, 0, 0, date('m', $timestamp)+1, 1, date('Y', $timestamp)));
     $day_count = date('t', $timestamp);
     $youbi = date('w', mktime(0, 0, 0, date('m', $timestamp), 1, date('Y', $timestamp)));
     
-    
-    // 初期設定
-
-
-    // login();
     $user_name = "datebase_1";
-    // ここをセッションか何かで受け取ることで、ユーザー分けできるようにしたい。
+    $id = 1;
+    $name_ID = "";
+    $name_ID .= "user_ID_".$id;
+    echo $name_ID;
 
+    login($user_name);
+    // ここでログインしている95行目の$user_nameを変えるだけでおそらくユーザーを変えることができる。
+    // full_testshow($user_name);
     $weeks = [];
     $stamps = [];
     $week = '';
     $stamp ='';
-    // $imgの中にスタンプの画像を入れる、現時点ではえがおのくま
     $img = '<img src="https://3.bp.blogspot.com/-p1j5JG0kN8I/Wn1ZUJ3CbuI/AAAAAAABKK4/hKPhQjTXXv0o3QXh1J0rQ4TaFqGqUGu7ACLcBGAs/s800/animal_smile_kuma.png
     " alt="" width = "50px" height="50px">';
     $week .=str_repeat('<td></td>', $youbi);
@@ -192,5 +192,12 @@
             ?>
         </table>
     </div>
+    <form action="" method="POST">
+                <div>
+                        <th>目標時間設定<th>
+                        <p><input type="time" name="wakeuptime"></p>
+                        <p><input type="submit" name="submit_time" value="設定"></p>
+                </div>
+    </form>
 </body>
 </html>
