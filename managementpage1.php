@@ -43,8 +43,6 @@
             <input type="submit" name="user_reference" value="閲覧">
         </form>
         
-        
-        
         <?php
         
         if(isset($_POST["userID"])){
@@ -88,6 +86,7 @@
                 }
                 return;
             }
+
             function full_testshow($user_name){
                 require_once("pdo.php");
                 $pdo = pdo_connect();
@@ -100,6 +99,7 @@
                 }
                 return;
             }
+
             date_default_timezone_set('Asia/Tokyo');
 
             if(isset($_GET['ym'])){
@@ -157,10 +157,10 @@
                     $stamp ='';
                 }
             }
+        }else{
+            echo '閲覧したいユーザーのIDを入力してください';
+        }
         ?>
-
-
-
          
         <div class="container">
         <h3><a href="?ym=<?php echo $prev; ?>">&lt;</a> <?php echo$html_title; ?> <a href="?ym=<?php echo $next; ?>">&gt;</a></h3>
