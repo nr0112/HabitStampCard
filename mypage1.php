@@ -1,4 +1,16 @@
 <?php
+        //---------------テーブル1------------------------------------------
+        // $sql = "CREATE TABLE IF NOT EXISTS db_users"
+        // ."("
+        // ."id INT AUTO_INCREMENT PRIMARY KEY,"
+        // ."mail TEXT,"
+        // ."username varchar(20),"
+        // ."password TEXT,"
+        // ."wakeup TEXT,"
+        // ."date_resister TEXT"
+        // .");";
+        // $stmt = $pdo -> query($sql);
+        //---------------------------------------------------------------------
     function return_img($day, $user_name){
         global $img;
         if(catchTrue($day, $user_name)){
@@ -92,11 +104,12 @@
     $day_count = date('t', $timestamp);
     $youbi = date('w', mktime(0, 0, 0, date('m', $timestamp), 1, date('Y', $timestamp)));
     
+    $wakeuptime_def = $_POST["wakeuptime"];
     $user_name = "datebase_1";
     $id = 1;
     $name_ID = "";
     $name_ID .= "user_ID_".$id;
-    echo $name_ID;
+    // echo $name_ID;
 
     login($user_name);
     // ここでログインしている95行目の$user_nameを変えるだけでおそらくユーザーを変えることができる。
