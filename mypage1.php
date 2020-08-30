@@ -1,16 +1,4 @@
 <?php
-        //---------------テーブル1------------------------------------------
-        // $sql = "CREATE TABLE IF NOT EXISTS db_users"
-        // ."("
-        // ."id INT AUTO_INCREMENT PRIMARY KEY,"
-        // ."mail TEXT,"
-        // ."username varchar(20),"
-        // ."password TEXT,"
-        // ."wakeup TEXT,"
-        // ."date_resister TEXT"
-        // .");";
-        // $stmt = $pdo -> query($sql);
-        //---------------------------------------------------------------------
     function return_img($day, $user_name){
         global $img;
         if(catchTrue($day, $user_name)){
@@ -18,7 +6,6 @@
         }
         return '<th></th>';
     }
-    // スタンプをつけるかどうか判定する関数
     function catchTrue($day, $user_name){
         global $timestamp;
         $ymj ="";
@@ -54,7 +41,7 @@
         $login = $pdo -> prepare($insert_tmp);
         $login -> bindParam(":comment", $comment, PDO::PARAM_STR);
         $login -> bindParam(":photo", $photo, PDO::PARAM_STR);
-        $login -> bindParam (":wakeupflag", $wakeupflag, PDO::PARAM_INT);
+        $login -> bindParam (":wakeupflag", wakeupflag_update($user_name), PDO::PARAM_INT);
         $login -> execute();
         }
         return;
@@ -62,7 +49,6 @@
     function testshow($user_name){
         require_once("pdo.php");
         $pdo = pdo_connect();
-        global $day;
         $select = "SELECT * FROM $user_name WHERE date=:date AND wakeupflag=1";
         $stmt = $pdo->prepare($select);
         $stmt ->bindValue(':date', $day);
@@ -86,6 +72,49 @@
         }
         return;
     }
+    function wakeuptime_set($user_name, $wakeuptime_def){
+        require_once("pdo.php");
+        $pdo = pdo_connect();
+        $id = substr($user_name, 8);
+        // user_ID_1という形から1という形に加工
+
+        $update_wakeup = "UPDATE db_users SET wakeup=:wakeup WHERE id=:id";
+        $stmt = $pdo->prepare($update_wakeup);
+        $stmt -> bindParam(':wakeup', $wakeuptime_def);
+        $stmt -> bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt -> execute();
+        
+    }
+    function wakeupflag_update($user_name){
+        require_once("pdo.php");
+        $pdo = pdo_connect();
+        $flag  = 0;
+        if(wakeup_get($user_name) > date('H:i')){
+            $flag = 1;
+        }elseif(wakeup_get($user_name) == ""){
+            echo "ERROR";
+        }
+        $update_flag = "UPDATE $user_name SET wakeupflag=:wakeupflag WHERE date=:date";
+        $stmt = $pdo ->prepare($update_flag);
+        $stmt ->bindParam(':wakeupflag', $flag, PDO::PARAM_INT);
+        $stmt ->bindValue(':date', date('Y-m-j'));
+        $stmt ->execute();
+    }
+    function wakeup_get($user_name){
+        require_once("pdo.php");
+        $pdo = pdo_connect();
+        $results = "";
+        $id = substr($user_name, 8);
+        $select = "SELECT db_users WHERE id=:id";
+        $stmt = $pdo->prepare($select);
+        $stmt ->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt ->execute();
+        $buf = $stmt->fetchAll();
+        foreach($buf as $row){
+            $results = $row["wakeup"];
+        }
+        return $results;
+    }
     date_default_timezone_set('Asia/Tokyo');
 
     if(isset($_GET['ym'])){
@@ -105,15 +134,23 @@
     $day_count = date('t', $timestamp);
     $youbi = date('w', mktime(0, 0, 0, date('m', $timestamp), 1, date('Y', $timestamp)));
     
-    $wakeuptime_def = $_POST["wakeuptime"];
     $user_name = "datebase_1";
     $id = 1;
     $name_ID = "";
     $name_ID .= "user_ID_".$id;
     // echo $name_ID;
+    $int_id = substr($name_ID, 8);
 
+
+    if(isset($_POST["submit_time"])){
+        $wakeuptime_def = $_POST["wakeuptime"];
+        // echo $wakeuptime_def;
+        $now_time = date('H:i');
+        
+    }
     login($user_name);
-    // ここでログインしている95行目の$user_nameを変えるだけでおそらくユーザーを変えることができる。
+    
+    // ここでログインしている$user_nameを変えるだけでおそらくユーザーを変えることができる。
     // full_testshow($user_name);
     $weeks = [];
     $stamps = [];
@@ -124,7 +161,7 @@
     $week .=str_repeat('<td></td>', $youbi);
     $stamp .=str_repeat('<th></th>', $youbi);
     for($day = 1; $day <= $day_count; $day++, $youbi++){
-        $date = $ym.'-'.$dayx;
+        $date = $ym.'-'.$day;
         $stamp .=return_img($day, $user_name);
         if($today == $date){
             $week.='<td class="today">'. $day;
