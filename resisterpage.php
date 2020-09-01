@@ -37,6 +37,10 @@
     </form>
 
     <?php
+
+    require_once("pdo.php");
+    $pdo = pdo_connect();
+
     //---------------テーブル1------------------------------------------
     $sql = "CREATE TABLE IF NOT EXISTS db_users"
     ."("
@@ -49,9 +53,6 @@
     .");";
     $stmt = $pdo -> query($sql);
     //---------------------------------------------------------------------
-
-    require_once("pdo.php");
-    $pdo = pdo_connect();
 
     //登録情報をデータベースに登録する
     if (isset($_POST["new_mail"])&&isset($_POST["username"])&&isset($_POST["password"])){
@@ -116,7 +117,7 @@
                 session_destroy();
                       
     ?>
-    <p><a href="ログインページのURL">ログインページ</a></p>
+    <p><a href="https://tb-220025.tech-base.net/loginpage.php">ログインページ</a></p>
     <?php
 
             //キャッチした例外を$eで参照・エラーメッセージを取得している
