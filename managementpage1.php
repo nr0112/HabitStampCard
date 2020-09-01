@@ -42,7 +42,7 @@
 
         <form arction="" method="POST">
         <!-- user_idを指定するとその人のカレンダーを閲覧することができる -->
-            <input type="number" name="userID">
+            <input type="number" name="userID" min=1>
             <input type="submit" name="user_reference" value="閲覧">
         </form>
         
@@ -131,7 +131,7 @@
             $name_ID = "";
             $name_ID .= "user_ID_".$id;
 
-            echo 'ID=1のユーザーのカレンダーを表示しています！<br>';
+            echo "ID= $id のユーザーのカレンダーを表示しています！<br>";
         
             // login($name_ID);
             // ここでログインしている95行目の$user_nameを変えるだけでおそらくユーザーを変えることができる。
