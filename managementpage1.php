@@ -121,13 +121,11 @@
             $day_count = date('t', $timestamp);
             $youbi = date('w', mktime(0, 0, 0, date('m', $timestamp), 1, date('Y', $timestamp)));
             
-            $user_name = $_POST["userID"];
             $id = $_POST["userID"];
             $name_ID = "";
             $name_ID .= "user_ID_".$id;
-            echo $name_ID;
         
-            login($user_name);
+            login($name_ID);
             // ここでログインしている95行目の$user_nameを変えるだけでおそらくユーザーを変えることができる。
             // full_testshow($user_name);
             $weeks = [];
@@ -140,7 +138,7 @@
             $stamp .=str_repeat('<th></th>', $youbi);
             for($day = 1; $day <= $day_count; $day++, $youbi++){
                 $date = $ym.'-'.$dayx;
-                $stamp .=return_img($day, $user_name);
+                $stamp .=return_img($day, $name_ID);
                 if($today == $date){
                     $week.='<td class="today">'. $day;
                 }else{
