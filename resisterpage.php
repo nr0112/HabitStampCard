@@ -92,7 +92,7 @@
                       登録メールアドレス：'. $_SESSION["mail_resister"].'<br>
                       ユーザー名：'.$_SESSION["username_resister"].'<br>
                       パスワード：'. mb_substr($_SESSION["password_resister"],0,2,"UTF-8").str_repeat("*",mb_strlen($_SESSION["password_resister"],"UTF-8")-2).'<br>
-                      目標起床時間:'.$_SESSION["wakeup"].'<br>;
+                      目標起床時間：'.$_SESSION["wakeup"].'<br>
                       登録日：'.$_SESSION["date_resister"].'<br>';
                 //登録完了後71行目のユーザーIDをもとにテーブルを作成
                 $name_id = "";
