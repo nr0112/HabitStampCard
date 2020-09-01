@@ -56,7 +56,7 @@
             
             try{
                 //メールが一致する箇所を抽出
-                $sql_select = 'SELECT*FROM users WHERE mail=:mail';
+                $sql_select = 'SELECT*FROM db_users WHERE mail=:mail';
                 $stmt_select = $pdo -> prepare($sql_select);
                 $stmt_select -> bindParam(':mail', $mail, PDO::PARAM_STR);
                 $stmt_select -> execute();
