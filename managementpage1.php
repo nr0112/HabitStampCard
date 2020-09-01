@@ -103,6 +103,21 @@
             }
             return;
         }
+        function get_username($user_ID){
+            //　返り値にユーザ名
+            require_once("pdo.php");
+            $pdo = pdo_connect();
+            $id = substr($user_ID, 8);
+            $select = "SELECT * FROM db_users WHERE id=:id";
+            $stmt = $pdo->prepare($select);
+            $stmt ->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt ->execute();
+            $buf = $stmt->fetchAll();
+            foreach($buf as $row){
+                $results = $row["username"];
+            }
+            return $results;
+        }
 
         date_default_timezone_set('Asia/Tokyo');            
         
@@ -131,8 +146,9 @@
             $id = $_POST["userID"];
             $name_ID = "";
             $name_ID .= "user_ID_".$id;
-
+            $username = get_username($name_ID);
             echo "ID= $id のユーザーのカレンダーを表示しています！<br>";
+            echo "ユーザ名=  ".$username."<br>";
         
             // login($name_ID);
             // ここでログインしている95行目の$user_nameを変えるだけでおそらくユーザーを変えることができる。
