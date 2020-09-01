@@ -37,11 +37,12 @@
         // 今日ログインした情報がなかったら
         if(count($results) == 0)
         {
+        $wakeupflag = wakeupflag_update($user_name);
         $insert_tmp = "INSERT INTO $user_name(date, logintime, comment, photo, wakeupflag) VALUES (now(), now(), :comment, :photo, :wakeupflag)";
         $login = $pdo -> prepare($insert_tmp);
         $login -> bindParam(":comment", $comment, PDO::PARAM_STR);
         $login -> bindParam(":photo", $photo, PDO::PARAM_STR);
-        $login -> bindParam (":wakeupflag", wakeupflag_update($user_name), PDO::PARAM_INT);
+        $login -> bindParam (":wakeupflag", $wakeupflag, PDO::PARAM_INT);
         $login -> execute();
         }
         return;
@@ -89,7 +90,7 @@
         require_once("pdo.php");
         $pdo = pdo_connect();
         $flag  = 0;
-        if(wakeup_get($user_name) < date('H:i')){
+        if(wakeup_get($user_name) > date('H:i')){
             $flag = 1;
         }elseif(wakeup_get($user_name) == ""){
             echo "ERROR";
@@ -166,6 +167,10 @@
     }
     login($name_ID);
     echo get_username($name_ID);
+    echo "<br>目標起床時間";
+    echo wakeup_get($name_ID);
+    echo "<br>現在時間と目標起床時間";
+    echo wakeupflag_update($name_ID);
     // ここでログインしている$user_nameを変えるだけでおそらくユーザーを変えることができる。
     // full_testshow($user_name);
     $weeks = [];
