@@ -22,7 +22,7 @@
         <form action="" method="POST">
             <legend>管理者専用ログイン</legend>
                 <label><input type="text" name="managerID" placeholder="管理者用ID"></label>
-                <label><input type="number" name="managerPASS" placeholder="管理者用パスワード"></label>
+                <label><input type="text" name="managerPASS" placeholder="管理者用パスワード"></label>
                 <label><input type="submit" name="manager_submit"></label>
         </form>
     </body>
