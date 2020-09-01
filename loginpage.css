@@ -5,23 +5,17 @@ header{
 }
 
 .form{
-    /* フォーム全体の中央寄せ */
-    /* 幅を決めること！ */
     width: 500px;
     margin-right: auto;
     margin-left: auto;
 }
 
 .set{
-    /* border: 10px solid black;
-    background-color: blue; */
     float: left;
     padding: 20px;
 }
 
 footer{
-    /* background-color: peachpuff; */
-    /* floatに対する調整 */
     clear: left;
 }
 
