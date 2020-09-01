@@ -89,7 +89,7 @@
         require_once("pdo.php");
         $pdo = pdo_connect();
         $flag  = 0;
-        if(wakeup_get($user_name) > date('H:i')){
+        if(wakeup_get($user_name) < date('H:i')){
             $flag = 1;
         }elseif(wakeup_get($user_name) == ""){
             echo "ERROR";
