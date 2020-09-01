@@ -38,7 +38,7 @@
     </head>
     <body>
         <h1>管理者専用ページ</h1>
-        <p>閲覧したいユーザーIDを入力してください</p>
+        <p>カレンダーを閲覧したいユーザーIDを入力してください</p>
 
         <form arction="" method="POST">
         <!-- user_idを指定するとその人のカレンダーを閲覧することができる -->
@@ -104,6 +104,7 @@
         }
 
         date_default_timezone_set('Asia/Tokyo');            
+        
         if(isset($_GET['ym'])&&$_GET['ym']!=""){
             $ym = $_GET['ym'];
         }else{
@@ -114,7 +115,9 @@
         if($timestamp === false){
             $ym = date('Y-m');
             $timestamp = strtotime($ym . '-01');
-        }            $today = date('Y-m-j');
+        }            
+        
+        $today = date('Y-m-j');
         //$timestampをフォーマットに変換しているが、nullになる=$timestamp, $ymもnullだった
         $html_title = date('Y年n月', $timestamp);
         $prev = date('Y-m', mktime(0, 0, 0, date('m', $timestamp)-1, 1, date('Y', $timestamp)));
@@ -122,8 +125,49 @@
         $day_count = date('t', $timestamp);
         $youbi = date('w', mktime(0, 0, 0, date('m', $timestamp), 1, date('Y', $timestamp)));            
 
+        //入力したユーザーIDに応じてカレンダーを表示*デフォルトはID=1
         if(isset($_POST["userID"])){
             $id = $_POST["userID"];
+            $name_ID = "";
+            $name_ID .= "user_ID_".$id;
+
+            echo 'ID=1のユーザーのカレンダーを表示しています！<br>';
+        
+            // login($name_ID);
+            // ここでログインしている95行目の$user_nameを変えるだけでおそらくユーザーを変えることができる。
+            // full_testshow($user_name);
+            $weeks = [];
+            $stamps = [];
+            $week = '';
+            $stamp ='';
+            $img = '<img src="https://3.bp.blogspot.com/-p1j5JG0kN8I/Wn1ZUJ3CbuI/AAAAAAABKK4/hKPhQjTXXv0o3QXh1J0rQ4TaFqGqUGu7ACLcBGAs/s800/animal_smile_kuma.png
+            " alt="" width = "50px" height="50px">';
+            $week .=str_repeat('<td></td>', $youbi);
+            $stamp .=str_repeat('<th></th>', $youbi);
+            for($day = 1; $day <= $day_count; $day++, $youbi++){
+                $date = $ym.'-'.$day;
+                $stamp .=return_img($day, $name_ID);
+                if($today == $date){
+                    $week.='<td class="today">'. $day;
+                }else{
+                    $week .= '<td>'. $day;
+                }
+                $week .= '</td>';
+                
+                if ($youbi % 7 == 6 || $day == $day_count){
+                    if($day == $day_count){
+                        $week .= str_repeat('<td></td>', 6 - ($youbi % 7));
+                    }
+        
+                    $weeks[]= '<tr>'. $week.'</tr>';
+                    $stamps[]='<tr>'. $stamp.'</tr>';
+                    $week = '';
+                    $stamp ='';
+                }
+            }
+        }else{
+            echo 'ID=1のユーザーのカレンダーを表示しています！<br>';
+            $id = 1;
             $name_ID = "";
             $name_ID .= "user_ID_".$id;
         
@@ -159,8 +203,6 @@
                     $stamp ='';
                 }
             }
-        }else{
-            echo '閲覧したいユーザーのIDを入力してください';
         }
         ?>
          
