@@ -33,6 +33,7 @@
             th:nth-of-type(7), td:nth-of-type(7) {
                 color: blue;
             }
+
         </style>
     
     </head>
