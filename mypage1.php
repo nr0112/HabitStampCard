@@ -222,6 +222,7 @@
 </head>
 <body>
 
+<?php var_dump($ym); var_dump($timestamp); ?>
         <div class="container">
     <h3><a href="?ym=<?php echo $prev; ?>">&lt;</a> <?php echo $html_title; ?> <a href="?ym=<?php echo $next; ?>">&gt;</a></h3>
         <table class="table table-bordered">
