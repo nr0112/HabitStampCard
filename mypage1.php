@@ -106,13 +106,27 @@
         $pdo = pdo_connect();
         $results = "";
         $id = substr($user_name, 8);
-        $select = "SELECT db_users WHERE id=:id";
+        $select = "SELECT * FROM db_users WHERE id=:id";
         $stmt = $pdo->prepare($select);
         $stmt ->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt ->execute();
         $buf = $stmt->fetchAll();
         foreach($buf as $row){
             $results = $row["wakeup"];
+        }
+        return $results;
+    }
+    function get_username($user_ID){
+        require_once("pdo.php");
+        $pdo = pdo_connect();
+        $id = substr($user_ID, 8);
+        $select = "SELECT * FROM db_users WHERE id=:id";
+        $stmt = $pdo->prepare($select);
+        $stmt ->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt ->execute();
+        $buf = $stmt->fetchAll();
+        foreach($buf as $row){
+            $results = $row["username"];
         }
         return $results;
     }
@@ -151,7 +165,7 @@
         
     }
     login($name_ID);
-    
+    echo get_username($name_ID);
     // ここでログインしている$user_nameを変えるだけでおそらくユーザーを変えることができる。
     // full_testshow($user_name);
     $weeks = [];
