@@ -35,6 +35,8 @@
 
     <footer>
     <a href="management_loginpage.php">管理者ページ</a>
+
+    <div class="message">
     
     <?php
     
@@ -116,7 +118,7 @@
             $mail->CharSet = "UTF-8";
             $mail->Encoding = "base64";
             $mail->setFrom(MAIL_FROM,MAIL_FROM_NAME);
-            $mail->addAddress($new_mail, '【〜〜〜サイト】仮登録者様'); //受信者（送信先）を追加する
+            $mail->addAddress($new_mail, '【習慣スタンプカード】仮登録者様'); //受信者（送信先）を追加する
             //    $mail->addReplyTo('xxxxxxxxxx@xxxxxxxxxx','返信先');
             //    $mail->addCC('xxxxxxxxxx@xxxxxxxxxx'); // CCで追加
             //    $mail->addBcc('xxxxxxxxxx@xxxxxxxxxx'); // BCCで追加
@@ -127,7 +129,7 @@
             $mail->isHTML(true);    // HTMLフォーマットの場合はコチラを設定します
             $body = 'この度は仮登録ありがとうございます。<br>
             まだ会員登録は完了していません。以下のURLより本登録をお願いいたします。<br> 
-            resisterpageのURL';
+            https://tb-220025.tech-base.net/resisterpage.php';
             
             $mail->Body  = $body; // メール本文
             // メール送信の実行
@@ -147,6 +149,8 @@
     }
 
     ?>
+
+    </div>
 
     </footer>
     </body>
