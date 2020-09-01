@@ -238,6 +238,9 @@
         th:nth-of-type(7), td:nth-of-type(7) {
             color: blue;
         }
+        footer{
+            float: right;
+        }
     </style>
     
 </head>
@@ -266,11 +269,12 @@
         </table>
     </div>
     <form action="" method="POST">
-                <div>
+                <div class="wakeup">
                         <th>目標時間設定<th>
                         <p><input type="time" name="wakeuptime"></p>
                         <p><input type="submit" name="submit_time" value="設定"></p>
                 </div>
     </form>
+    <footer><a href="https://tb-220025.tech-base.net/loginpage.php">ログインページ</a></footer>
 </body>
 </html>

@@ -18,24 +18,30 @@ $name_id .= "user_ID_".$id;
 // ↑で$idを数字から名前に加工
 // 例：$id = 1の場合
 // 　$name_id = user_ID_1　　(str型)
-$sql_create_table="CREATE TABLE $name_id"
-    ."("
-    ."date DATE,"
-    ."logintime DATETIME,"
-    ."wakeupflag int(1),"
-    ."photo VARCHAR(128),"
-    ."comment VARCHAR(128)"
-    .")"
-    ."ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;";
-$stmt = $pdo->query($sql_create_table);
+//$sql_create_table="CREATE TABLE $name_id"
+//     ."("
+//     ."date DATE,"
+//     ."logintime DATETIME,"
+//     ."wakeupflag int(1),"
+//     ."photo VARCHAR(128),"
+//     ."comment VARCHAR(128)"
+//     .")"
+//     ."ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;";
+// $stmt = $pdo->query($sql_create_table);
 
 // 日付をもとにコメントと画像ファイルを検索する.日付は他の人から受け取るデータ
 
-    $date=date('Y-m-j');
+   //$date=date('Y-m-j');//test2に書き換える
+
+   if(isset($_GET['date'])){
+    $date = $_GET['date'];
+}else{
+    $date = date('Y-m-j');
+}
  
-      $sql = 'SELECT * FROM $name_id  WHERE date=:date';
+      $sql = "SELECT * FROM $name_id  WHERE date=:date";
       $stmt = $pdo->prepare($sql);
-      $stmt->bindParam(':date', $date, PDO::PARAM_INT);
+      $stmt->bindParam(':date', $date, PDO::PARAM_STR);
       $stmt->execute();
       
       $results = $stmt->fetchAll();//実行結果を検索
@@ -62,9 +68,9 @@ $stmt = $pdo->query($sql_create_table);
             $sql =$pdo->prepare("UPDATE　$name_id SET comment=:comment,photo=:photo WHERE date=:date");//困ったら""を使う.where=if文　日付毎にファイルがつくられている　dateが同じ時にこれを実行する
 
             //$sql =$pdo->prepare("INSERT into　$name_id (date,logintime,wakeupflag,photo,comment) VALUES (:date,now(),1,:photo,:comment");
-            $stmt-> bindParam(':date', $date, PDO::PARAM_DATE);
-            $stmt-> bindParam(':comment', $comment, PDO::PARAM_STR);
-            $stmt-> bindParam(':photo', $uni_photo, PDO::PARAM_STR);
+            $stmt-> bindParam(':date',$date, PDO::PARAM_STR);
+            $stmt-> bindParam(':comment',$comment, PDO::PARAM_STR);
+            $stmt-> bindParam(':photo',$uni_photo, PDO::PARAM_STR);
             $stmt->execute();
         } else {
             echo '画像ファイルではありません';
@@ -76,7 +82,7 @@ $stmt = $pdo->query($sql_create_table);
     
        $sql = "DELETE FROM $name_id comment=:comment,photo=:photo WHERE date=:date";
        $stmt = $pdo->prepare($sql);
-       $stmt-> bindParam(':date', $date, PDO::PARAM_DATE);
+       $stmt-> bindParam(':date', $date, PDO::PARAM_STR);
        $stmt->execute();
     }  
  
@@ -84,7 +90,7 @@ $stmt = $pdo->query($sql_create_table);
  
 <?php 
    // その日付の画像が登録されているかを確認します
-  if ($edit_photo != null){
+  if ($edit_photo!=null){
     echo "<img src='photos/".$edit_photo."'width=300 height=300 alt=''>.</br>";
   }
  ?>
@@ -92,7 +98,7 @@ $stmt = $pdo->query($sql_create_table);
   <form action="" method="post" enctype="multipart/form-data">
   
   <div class="item" >
-      <label for="comment">コメント:</label>
+      <label for="comment">日記:</label>
         <textarea id="comment"  name="comment" placeholder="ここには自由にコメントを記入してください" rows="8" cols="40" style="vertical-align:middle;"><?php echo $edit_comment; ?></textarea> 
     <!--行数　row 文字数　cols cssコード：style=""　vertical-align 縦方向のそろえ方　middle　位置-->
     </div><br>
