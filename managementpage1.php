@@ -37,6 +37,9 @@
     
     </head>
     <body>
+        <h1>管理者専用ページ</h1>
+        <p>閲覧したいユーザーIDを入力してください</p>
+
         <form arction="" method="POST">
         <!-- user_idを指定するとその人のカレンダーを閲覧することができる -->
             <input type="number" name="userID">
@@ -183,5 +186,7 @@
                 ?>
             </table>
         </div>
-     </body>
+
+    <footer><a href="https://tb-220025.tech-base.net/loginpage.php">ログインページ</a></footer>
+    </body>
 </html>
