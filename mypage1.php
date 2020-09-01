@@ -275,6 +275,9 @@
                         <p><input type="submit" name="submit_time" value="設定"></p>
                 </div>
     </form>
-    <footer><a href="https://tb-220025.tech-base.net/loginpage.php">ログインページ</a></footer>
+    <footer>
+        <a href="https://tb-220025.tech-base.net/loginpage.php">ログインページ</a>
+        <a href="https://tb-220025.tech-base.net/rankingpage.php">ランキングページ</a>
+    </footer>
 </body>
 </html>
