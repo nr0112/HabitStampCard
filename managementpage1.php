@@ -37,90 +37,89 @@
     
     </head>
     <body>
+        <form arction="" method="POST">
         <!-- user_idを指定するとその人のカレンダーを閲覧することができる -->
-        <form>
             <input type="number" name="userID">
             <input type="submit" name="user_reference" value="閲覧">
         </form>
         
         <?php
+        // スタンプをつける関数
+        function return_img($day, $user_name){
+            global $img;
+            if(catchTrue($day, $user_name)){
+            return '<th>'.$img.'</th>';
+            }
+            return '<th></th>';
+        }
+        // スタンプをつけるかどうか判定する関数
+        function catchTrue($day, $user_name){
+            global $timestamp;
+            $ymj ="";
+            $ymj = date('Y-m-j', mktime(0, 0, 0, date('m', $timestamp), $day, date('Y', $timestamp)));
+            require_once("pdo.php");
+            $pdo = pdo_connect();
+            $select = "SELECT * FROM $user_name WHERE date=:date";
+            $stmt = $pdo->prepare($select);
+            $stmt ->bindValue(':date', $ymj);
+            $stmt->execute();
+            $results = $stmt->fetchAll();
+            if(count($results) != 0){
+            return TRUE;
+            }
+        }       
         
-        if(isset($_POST["userID"])){
-            // スタンプをつける関数
-            function return_img($day, $user_name){
-                global $img;
-                if(catchTrue($day, $user_name)){
-                return '<th>'.$img.'</th>';
-                }
-                return '<th></th>';
+        //今日の日付だけを見る
+        // function testshow($user_name){
+        //     require_once("pdo.php");
+        //     $pdo = pdo_connect();
+        //     global $day;
+        //     $select = "SELECT * FROM $user_name WHERE date=:date AND wakeupflag=1";
+        //     $stmt = $pdo->prepare($select);
+        //     $stmt ->bindValue(':date', $day);
+        //     $stmt->execute();
+        //     $buf = $stmt->fetchAll();
+        //     foreach ($buf as $row){
+        //         var_dump($row);
+        //         echo "<br>";
+        //     }
+        //     return;
+        // }
+        
+        //全ての日付を参照
+        function full_testshow($user_name){
+            require_once("pdo.php");
+            $pdo = pdo_connect();
+            $select = "SELECT *FROM $user_name";
+            $stmt = $pdo ->query($select);
+            $buf = $stmt->fetchAll();
+            foreach ($buf as $row){
+                echo $row["date"];
+                echo "<br>";
             }
-            // スタンプをつけるかどうか判定する関数
-            function catchTrue($day, $user_name){
-                global $timestamp;
-                $ymj ="";
-                $ymj = date('Y-m-j', mktime(0, 0, 0, date('m', $timestamp), $day, date('Y', $timestamp)));
-                require_once("pdo.php");
-                $pdo = pdo_connect();
-                $select = "SELECT * FROM $user_name WHERE date=:date";
-                $stmt = $pdo->prepare($select);
-                $stmt ->bindValue(':date', $ymj);
-                $stmt->execute();
-                $results = $stmt->fetchAll();
-                if(count($results) != 0){
-                return TRUE;
-                }
-            }
+            return;
+        }
 
-            //今日の日付だけを見る
-            // function testshow($user_name){
-            //     require_once("pdo.php");
-            //     $pdo = pdo_connect();
-            //     global $day;
-            //     $select = "SELECT * FROM $user_name WHERE date=:date AND wakeupflag=1";
-            //     $stmt = $pdo->prepare($select);
-            //     $stmt ->bindValue(':date', $day);
-            //     $stmt->execute();
-            //     $buf = $stmt->fetchAll();
-            //     foreach ($buf as $row){
-            //         var_dump($row);
-            //         echo "<br>";
-            //     }
-            //     return;
-            // }
-            
-            //全ての日付を参照
-            function full_testshow($user_name){
-                require_once("pdo.php");
-                $pdo = pdo_connect();
-                $select = "SELECT *FROM $user_name";
-                $stmt = $pdo ->query($select);
-                $buf = $stmt->fetchAll();
-                foreach ($buf as $row){
-                    echo $row["date"];
-                    echo "<br>";
-                }
-                return;
-            }
+        date_default_timezone_set('Asia/Tokyo');            
+        if(isset($_GET['ym'])&&$_GET['ym']!=""){
+            $ym = $_GET['ym'];
+        }else{
+            $ym = date('Y-m');
+        }
+        $timestamp = strtotime($ym . '-01');
 
-            date_default_timezone_set('Asia/Tokyo');
-
-            if(isset($_GET['ym'])){
-                $ym = $_GET['ym'];
-            }else{
-                $ym = date('Y-m');
-            }
+        if($timestamp === false){
+            $ym = date('Y-m');
             $timestamp = strtotime($ym . '-01');
-            if($timestamp === false){
-                $ym = date('Y-m');
-                $timestamp = strtotime($ym . '-01');
-            }
-            $today = date('Y-m-j');
-            $html_title = date('Y年n月', $timestamp);
-            $prev = date('Y-m', mktime(0, 0, 0, date('m', $timestamp)-1, 1, date('Y', $timestamp)));
-            $next = date('Y-m', mktime(0, 0, 0, date('m', $timestamp)+1, 1, date('Y', $timestamp)));
-            $day_count = date('t', $timestamp);
-            $youbi = date('w', mktime(0, 0, 0, date('m', $timestamp), 1, date('Y', $timestamp)));
-            
+        }            $today = date('Y-m-j');
+        //$timestampをフォーマットに変換しているが、nullになる=$timestamp, $ymもnullだった
+        $html_title = date('Y年n月', $timestamp);
+        $prev = date('Y-m', mktime(0, 0, 0, date('m', $timestamp)-1, 1, date('Y', $timestamp)));
+        $next = date('Y-m', mktime(0, 0, 0, date('m', $timestamp)+1, 1, date('Y', $timestamp)));
+        $day_count = date('t', $timestamp);
+        $youbi = date('w', mktime(0, 0, 0, date('m', $timestamp), 1, date('Y', $timestamp)));            
+
+        if(isset($_POST["userID"])){
             $id = $_POST["userID"];
             $name_ID = "";
             $name_ID .= "user_ID_".$id;
@@ -137,7 +136,7 @@
             $week .=str_repeat('<td></td>', $youbi);
             $stamp .=str_repeat('<th></th>', $youbi);
             for($day = 1; $day <= $day_count; $day++, $youbi++){
-                $date = $ym.'-'.$dayx;
+                $date = $ym.'-'.$day;
                 $stamp .=return_img($day, $name_ID);
                 if($today == $date){
                     $week.='<td class="today">'. $day;
@@ -163,7 +162,7 @@
         ?>
          
         <div class="container">
-        <h3><a href="?ym=<?php echo $prev; ?>">&lt;</a> <?php echo$html_title; ?> <a href="?ym=<?php echo $next; ?>">&gt;</a></h3>
+        <h3><a href="?ym=<?php echo $prev; ?>">&lt;</a> <?php echo $html_title; ?> <a href="?ym=<?php echo $next; ?>">&gt;</a></h3>
             <table class="table table-bordered">
                 <tr>
                     <td>日</td>
