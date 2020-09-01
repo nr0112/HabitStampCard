@@ -122,7 +122,7 @@
             $youbi = date('w', mktime(0, 0, 0, date('m', $timestamp), 1, date('Y', $timestamp)));
             
             $user_name = $_POST["userID"];
-            $id = 1;
+            $id = $_POST["userID"];
             $name_ID = "";
             $name_ID .= "user_ID_".$id;
             echo $name_ID;
