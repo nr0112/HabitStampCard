@@ -94,11 +94,12 @@
         }elseif(wakeup_get($user_name) == ""){
             echo "ERROR";
         }
-        $update_flag = "UPDATE $user_name SET wakeupflag=:wakeupflag WHERE date=:date";
-        $stmt = $pdo ->prepare($update_flag);
-        $stmt ->bindParam(':wakeupflag', $flag, PDO::PARAM_INT);
-        $stmt ->bindValue(':date', date('Y-m-j'));
-        $stmt ->execute();
+        return $flag;
+        // $update_flag = "UPDATE $user_name SET wakeupflag=:wakeupflag WHERE date=:date";
+        // $stmt = $pdo ->prepare($update_flag);
+        // $stmt ->bindParam(':wakeupflag', $flag, PDO::PARAM_INT);
+        // $stmt ->bindValue(':date', date('Y-m-j'));
+        // $stmt ->execute();
     }
     function wakeup_get($user_name){
         require_once("pdo.php");
