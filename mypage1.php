@@ -164,7 +164,7 @@
     $stamp .=str_repeat('<th></th>', $youbi);
     for($day = 1; $day <= $day_count; $day++, $youbi++){
         $date = $ym.'-'.$day;
-        $day_mypage2 = "<a href="."test2.php?date=".$date.">".$day."</a>";
+        $day_mypage2 = "<a href="."mypage2.php?date=".$date.">".$day."</a>";
         $stamp .=return_img($day, $name_ID);
         if($today == $date){
             $week.='<td class="today">'. $day_mypage2;
