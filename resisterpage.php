@@ -37,16 +37,10 @@
     </form>
 
     <?php
-<<<<<<< HEAD
 
     require_once("pdo.php");
     $pdo = pdo_connect();
 
-=======
-    
-    require_once("pdo.php");
-    $pdo = pdo_connect();
->>>>>>> 7cdefdd45e78a8cd41af58fd3c1aaecf41d6246e
     //---------------テーブル1------------------------------------------
     $sql = "CREATE TABLE IF NOT EXISTS db_users"
     ."("
@@ -60,10 +54,6 @@
     $stmt = $pdo -> query($sql);
     //---------------------------------------------------------------------
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 7cdefdd45e78a8cd41af58fd3c1aaecf41d6246e
     //登録情報をデータベースに登録する
     if (isset($_POST["new_mail"])&&isset($_POST["username"])&&isset($_POST["password"])){
         if ($_POST["password"]==$_POST["password2"]){
