@@ -7,7 +7,10 @@
     $select = "SELECT * FROM db_users";
     $stmt = $pdo -> query($select);
     $results = $stmt->fetchAll();
-    var_dump($results);
+    foreach($results as $row){
+        echo $row["username"];
+        echo "<br>";
+    }
 ?>
 <!DOCTYPE html>
 <html lang="ja">
