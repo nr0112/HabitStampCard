@@ -125,7 +125,7 @@
             $name_ID = "";
             $name_ID .= "user_ID_".$id;
         
-            login($name_ID);
+            // login($name_ID);
             // ここでログインしている95行目の$user_nameを変えるだけでおそらくユーザーを変えることができる。
             // full_testshow($user_name);
             $weeks = [];
