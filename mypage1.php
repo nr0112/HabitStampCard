@@ -278,6 +278,7 @@
     <footer>
         <a href="https://tb-220025.tech-base.net/loginpage.php">ログインページ</a>
         <a href="https://tb-220025.tech-base.net/rankingpage.php">ランキングページ</a>
+        <a href="https://tb-220025.tech-base.net/logoutpage.php">ログアウト</a>
     </footer>
 </body>
 </html>
