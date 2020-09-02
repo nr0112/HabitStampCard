@@ -117,7 +117,7 @@
                 session_destroy();
                       
     ?>
-    <p><a href="https://tb-220025.tech-base.net/loginpage.php">ログインページ</a></p>
+    <p><a href="loginpage.php">ログインページ</a></p>
     <?php
 
             //キャッチした例外を$eで参照・エラーメッセージを取得している
