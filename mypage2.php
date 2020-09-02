@@ -128,8 +128,7 @@ $name_id .= "user_ID_".$id;
       echo "<img src='photos/$show_photo'width=300 height=300 alt=''><br>";
       }
      
-    }
-      
+    
   }    
 
     $results = $stmt->fetchAll();//実行結果を検索
