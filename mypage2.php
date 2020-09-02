@@ -57,6 +57,9 @@ $name_id .= "user_ID_".$id;
   {
   
    $comment=$_POST["comment"];//コメント
+   if(isset($_FILES["photo"])){
+
+ 
    $photo=$_FILES["photo"];
 
     $uni_photo = uniqid(mt_rand(), true);//ファイル名をユニーク化
@@ -82,7 +85,17 @@ $name_id .= "user_ID_".$id;
         }
    // }
 }
+  }else{
+      $uni_photo=null;
+    $stmt=$pdo->prepare("UPDATE $name_id SET comment=:comment,photo=:photo WHERE date=:date");//困ったら""を使う.where=if文　日付毎にファイルがつくられている　dateが同じ時にこれを実行する
 
+    //$sql =$pdo->prepare("INSERT into　$name_id (date,logintime,wakeupflag,photo,comment) VALUES (:date,now(),1,:photo,:comment");
+    $stmt-> bindParam(':date', $date);
+    $stmt-> bindParam(':comment', $comment, PDO::PARAM_STR);
+    $stmt-> bindParam(':photo', $uni_photo, PDO::PARAM_STR);
+    $stmt->execute();
+
+  }
     if(isset($_POST["delete"])){
     
         $comment="";
@@ -103,11 +116,19 @@ $name_id .= "user_ID_".$id;
     foreach ($results as $row){
       //$rowの中にはテーブルのカラム名が入る
       
-      echo $row['date'].',';
-      echo $row['comment'].',';
-      echo "<img src='photos/$uni_photo'width=300 height=300 alt=''><br>";
+      $show_photo=$row['photo'];
+      if($show_photo==null){
+ echo $row['date'].'<br>';
+ echo $row['comment'].'<br>';
+      }else{
+
+        echo $row['date'].'<br>';
+      echo $row['comment'].'<br>';
       
-      echo "<hr>";//表示
+      echo "<img src='photos/$show_photo'width=300 height=300 alt=''><br>";
+      }
+     
+    }
       
   }    
 
@@ -115,8 +136,8 @@ $name_id .= "user_ID_".$id;
     foreach ($results as $row){
       //$rowの中にはテーブルのカラム名が入る
       
-      echo $row['date'].'<br>';
       echo $row['photo'].'<br>';
+      echo $row['date'].'<br>'
       echo $row['comment'].'<br>';
       
       
@@ -136,7 +157,7 @@ $name_id .= "user_ID_".$id;
   <form action="" method="post" enctype="multipart/form-data">
   <?php
   //その日付の画像が登録されているかを確認
-  if($edit_photo!=null){
+  if($edit_photo!=null){     
       echo"<img src='photos/'".$edit_photo."width=300 height=300 alt=''></br>";
   }
   ?>
