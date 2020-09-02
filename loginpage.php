@@ -24,7 +24,7 @@
                         <p><input type="submit" name="submit_login" value="ログイン"></p>
                 </div>
                 <div class="set">
-                    <h2>新規登録<h2>
+                    <h2>しんきとうろく<h2>
                         <h3>メールアドレス<h3>
                         <p><input type="text" name="new_mail" placeholder="メールアドレス"></p>
                         <p><input type="submit" name="submit_register" value="送信"></p>
@@ -117,7 +117,7 @@
             $mail->CharSet = "UTF-8";
             $mail->Encoding = "base64";
             $mail->setFrom(MAIL_FROM,MAIL_FROM_NAME);
-            $mail->addAddress($new_mail, '【習慣スタンプカード】仮登録者様'); //受信者（送信先）を追加する
+            $mail->addAddress($new_mail, '【スタンプしゅうかん】仮登録者様'); //受信者（送信先）を追加する
             //    $mail->addReplyTo('xxxxxxxxxx@xxxxxxxxxx','返信先');
             //    $mail->addCC('xxxxxxxxxx@xxxxxxxxxx'); // CCで追加
             //    $mail->addBcc('xxxxxxxxxx@xxxxxxxxxx'); // BCCで追加
@@ -144,7 +144,7 @@
         }
 
     }else{
-        echo '<br>ログインか新規登録か選んでください';
+        echo '<br>ログインかしんきとうろくかえらんでください';
     }
 
     ?>
