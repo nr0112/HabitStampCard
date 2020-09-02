@@ -14,7 +14,7 @@ $pdo =pdo_connect();
 
 $edit_comment='';
 $edit_photo='';
-$id=1;
+$id = $_SESSION['ID'];
 $name_id = "";
 $name_id .= "user_ID_".$id;
 // ↑で$idを数字から名前に加工
