@@ -78,7 +78,7 @@
       }
       else
       {
-        echo '画像ファイルではありません<br>';
+        echo 'がぞうファイルではありません<br>';
       }
     }
     else
@@ -138,16 +138,16 @@
 
   
   <div class="item">
-      <label for="comment">日記:</label>
+      <label for="comment">にっき:</label>
         <textarea id="comment"  name="comment" placeholder="ここには自由にコメントを記入してください" rows="8" cols="40" style="vertical-align:middle;"></textarea> 
     <!--行数　row 文字数　cols cssコード：style=""　vertical-align 縦方向のそろえ方　middle　位置-->
     </div><br>
  
-     <p>アップロード画像</p>
+     <p>アップロードがぞう</p>
      <input type="file" name="photo">
-     <button><input type="submit" name="approve" value="送信"></button>
+     <button><input type="submit" name="approve" value="おくる"></button>
   <br><br>
-    <input type="submit" name="delete" value="削除"> 
+    <input type="submit" name="delete" value="けす"> 
   
    </form>
    <a href="loginpage.php">ログインページ</a>
