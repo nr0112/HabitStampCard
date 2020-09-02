@@ -37,7 +37,6 @@
     <a href="management_loginpage.php">管理者ページ</a>
 
     <div class="message">
-    
     <?php
     
     require_once("pdo.php");
@@ -149,9 +148,7 @@
     }
 
     ?>
-
     </div>
-
     </footer>
     </body>
 </html>

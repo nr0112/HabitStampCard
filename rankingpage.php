@@ -23,8 +23,9 @@
     $number = 0;
     foreach($name_time as $key => $row){
         $number++;
+        $time = date('H:i', strtotime($row));
         echo $number."位:　";
-        echo $key."さん: ".$row."起床です。";
+        echo $key."さん: ".$time."起床です。";
         echo "<br>";
     }
 ?>
@@ -36,5 +37,6 @@
 
     </head>
     <body>
+    <a href="mypage1.php"></a>
     </body>
 </html>
