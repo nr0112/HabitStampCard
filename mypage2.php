@@ -35,6 +35,7 @@ $name_id .= "user_ID_".$id;
 
    //$date=date('Y-m-j');//test2に書き換える
 
+
    if(isset($_GET['date'])){
     $date = $_GET['date'];
 }else{
@@ -56,16 +57,17 @@ $name_id .= "user_ID_".$id;
   {
   
    $comment=$_POST["comment"];//コメント
-   $photo=$_POST["photo"];
+   $photo=$_FILES["photo"];
 
     $uni_photo = uniqid(mt_rand(), true);//ファイル名をユニーク化
     $uni_photo.= '.' . substr(strrchr($_FILES['photo']['name'], '.'), 1);//アップロードされたファイルの拡張子を取得
-    $file = "photos/$uni_photo";//保存先を指定
+    $file = 'photos/'.basename($uni_photo); //保存先を指定
 
     //if (!empty($_FILES['photo']['name'])) {//ファイルが選択されていれば$uni_photoにファイル名を代入
-        move_uploaded_file($_FILES['photo']['name'], './photos/' . $uni_photo);//imagesディレクトリにファイル保存
-        if (exif_phototype($file)) {//画像ファイルかのチェック
-            echo '画像をアップロードしました';
+
+        move_uploaded_file($_FILES['photo']['tmp_name'], $file); //photosディレクトリにファイル保存
+
+        if (exif_imagetype($file)) {//画像ファイルかのチェック
 
             $sql =$pdo->prepare("UPDATE　$name_id SET comment=:comment,photo=:photo WHERE date=:date");//困ったら""を使う.where=if文　日付毎にファイルがつくられている　dateが同じ時にこれを実行する
 
@@ -74,8 +76,9 @@ $name_id .= "user_ID_".$id;
             $stmt-> bindParam(':comment', $comment, PDO::PARAM_STR);
             $stmt-> bindParam(':photo', $uni_photo, PDO::PARAM_STR);
             $stmt->execute();
+            echo '画像をアップロードしました';
         } else {
-            echo '画像ファイルではありません';
+            echo '画像ファイルではありません<br>';
         }
    // }
 }
