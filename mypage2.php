@@ -11,7 +11,7 @@
 
 require_once("pdo.php");
 $pdo =pdo_connect();
-
+session_start();
 $edit_comment='';
 $edit_photo='';
 $id = $_SESSION['ID'];
