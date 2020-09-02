@@ -6,7 +6,7 @@
     <head>
         <meta charset="UTF-8">
         <title>ランキング掲示板</title>
-        <h1>きょうおきたひとはやいランキング</h1>
+        <h1>きょうはやくおきたひとランキング</h1>
     </head>
     <body>
         <?php
@@ -34,7 +34,7 @@
                 $number++;
                 $time = date('H:i', strtotime($row));
                 echo $number."位:　";
-                echo $key."さん: ".$time."起床です。";
+                echo $key."さん: ".$time."おきました。";
                 echo "<br>";
             }
         ?>
