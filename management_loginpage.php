@@ -25,6 +25,10 @@
                 <label><input type="text" name="managerPASS" placeholder="管理者用パスワード"></label>
                 <label><input type="submit" name="manager_submit"></label>
         </form>
+
+        <a href="loginpage.php">ログインページ</a>
+        <a href="rankingpage.php">ランキングページ</a>
+        <a href="logoutpage.php">ログアウト</a>
     </body>
     <?php
 
