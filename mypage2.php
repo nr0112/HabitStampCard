@@ -83,12 +83,11 @@
     }
     else
     {
-      $uni_photo=null;
-      $stmt=$pdo->prepare("UPDATE $name_id SET comment=:comment,photo=:photo WHERE date=:date");//困ったら""を使う.where=if文　日付毎にファイルがつくられている　dateが同じ時にこれを実行する
+      $stmt=$pdo->prepare("UPDATE $name_id SET comment=:comment WHERE date=:date");//困ったら""を使う.where=if文　日付毎にファイルがつくられている　dateが同じ時にこれを実行する
       //$sql =$pdo->prepare("INSERT into　$name_id (date,logintime,wakeupflag,photo,comment) VALUES (:date,now(),1,:photo,:comment");
       $stmt-> bindParam(':date', $date);
       $stmt-> bindParam(':comment', $comment, PDO::PARAM_STR);
-      $stmt-> bindParam(':photo', $uni_photo, PDO::PARAM_STR);
+      // $stmt-> bindParam(':photo', $uni_photo, PDO::PARAM_STR);
       $stmt->execute();
     }
   }
@@ -113,7 +112,7 @@
   {
     //$rowの中にはテーブルのカラム名が入る
     $show_photo=$row['photo'];
-    if($show_photo==null)
+    if($show_photo=="")
     {
       echo $row['date'].'<br>';
       echo $row['comment'].'<br>';
@@ -126,24 +125,6 @@
     }
         
   }
-
-  // $results = $stmt->fetchAll();//実行結果を検索
-  // foreach ($results as $row)
-  // {
-  //   //$rowの中にはテーブルのカラム名が入る
-    
-  //   echo $row['photo'].'<br>';
-  //   echo $row['date'].'<br>';
-  //   echo $row['comment'].'<br>';
-    
-    
-  //   echo "<hr>";//表示
-        
-  //   //echo $edit_name;
-  //   $edit_comment=$row['comment'];
-  //   //echo $edit_comment;
-  //   $edit_photo=$row['photo'];
-  // }
 ?>
  
    
@@ -158,7 +139,7 @@
   
   <div class="item">
       <label for="comment">日記:</label>
-        <textarea id="comment"  name="comment" placeholder="ここには自由にコメントを記入してください" rows="8" cols="40" style="vertical-align:middle;"><?php echo $edit_comment;?></textarea> 
+        <textarea id="comment"  name="comment" placeholder="ここには自由にコメントを記入してください" rows="8" cols="40" style="vertical-align:middle;"></textarea> 
     <!--行数　row 文字数　cols cssコード：style=""　vertical-align 縦方向のそろえ方　middle　位置-->
     </div><br>
  
