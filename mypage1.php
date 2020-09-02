@@ -168,7 +168,7 @@
     echo get_username($name_ID);
     echo "<br>おきるじかん";
     echo wakeup_get($name_ID);
-    echo "<br>いまのじかんとおきるじかん";
+    echo "<br>きょうはおきれたね！えらい！";
     echo wakeupflag_update($name_ID);
     // ここでログインしている$user_nameを変えるだけでおそらくユーザーを変えることができる。
     // full_testshow($user_name);
