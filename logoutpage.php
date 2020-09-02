@@ -23,7 +23,7 @@
     //---------------------------------------------------------------------------
     ?>
     <br>
-    <a href="https://tb-220025.tech-base.net/loginpage.php">ログイン</a>
+    <a href="loginpage.php">ログイン</a>
 
     </body>
 </html>
