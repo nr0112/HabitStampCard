@@ -46,6 +46,6 @@
     
     ?>
     <a href="loginpage.php">ログインページ</a>
-    <a href="rankingpage.php">ランキングページ</a>
+    <a href="rankingpage.php">ランキング</a>
     <a href="logoutpage.php">ログアウト</a>
 </html>
