@@ -94,6 +94,23 @@ $name_id .= "user_ID_".$id;
        $stmt->execute();
     }  
     
+    $sql = "SELECT * FROM $name_id  WHERE date=:date";
+      $stmt = $pdo->prepare($sql);
+      $stmt->bindParam(':date', $date);
+      $stmt->execute();
+
+    $results = $stmt->fetchAll();//実行結果を検索
+    foreach ($results as $row){
+      //$rowの中にはテーブルのカラム名が入る
+      
+      echo $row['date'].',';
+      echo $row['comment'].',';
+      echo"<img src='photos/'".$uni_photo."width=300 height=300 alt=''></br>";
+      
+      echo "<hr>";//表示
+      
+  }    
+
     $results = $stmt->fetchAll();//実行結果を検索
     foreach ($results as $row){
       //$rowの中にはテーブルのカラム名が入る
