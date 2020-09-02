@@ -69,7 +69,7 @@ $name_id .= "user_ID_".$id;
 
         if (exif_imagetype($file)) {//画像ファイルかのチェック
 
-            $sql =$pdo->prepare("UPDATE　$name_id SET comment=:comment,photo=:photo WHERE date=:date");//困ったら""を使う.where=if文　日付毎にファイルがつくられている　dateが同じ時にこれを実行する
+            $stmt=$pdo->prepare("UPDATE　$name_id SET comment=:comment,photo=:photo WHERE date=:date");//困ったら""を使う.where=if文　日付毎にファイルがつくられている　dateが同じ時にこれを実行する
 
             //$sql =$pdo->prepare("INSERT into　$name_id (date,logintime,wakeupflag,photo,comment) VALUES (:date,now(),1,:photo,:comment");
             $stmt-> bindParam(':date', $date);
@@ -87,7 +87,7 @@ $name_id .= "user_ID_".$id;
     
         $comment="";
         $photo="";
-        $sql=$pdo->prepare("UPDATE $name_id SET comment=:comment,photo=:photo WHERE date=:date");
+        $stmt=$pdo->prepare("UPDATE $name_id SET comment=:comment,photo=:photo WHERE date=:date");
        $stmt-> bindParam(':date', $date);
        $stmt-> bindParam(':comment', $comment,PDO::PARAM_STR);
        $stmt-> bindParam(':photo', $uni_photo,PDO::PARAM_STR);
