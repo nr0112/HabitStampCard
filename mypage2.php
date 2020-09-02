@@ -109,9 +109,9 @@ $name_id .= "user_ID_".$id;
 //echo $edit_comment;
        $edit_photo=$row['photo'];
   }    
- 
+
   
-}
+
 ?>
  
    
