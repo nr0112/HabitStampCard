@@ -127,22 +127,22 @@
   }
 
   // $results = $stmt->fetchAll();//実行結果を検索
-  foreach ($results as $row)
-  {
-    //$rowの中にはテーブルのカラム名が入る
+  // foreach ($results as $row)
+  // {
+  //   //$rowの中にはテーブルのカラム名が入る
     
-    echo $row['photo'].'<br>';
-    echo $row['date'].'<br>';
-    echo $row['comment'].'<br>';
+  //   echo $row['photo'].'<br>';
+  //   echo $row['date'].'<br>';
+  //   echo $row['comment'].'<br>';
     
     
-    echo "<hr>";//表示
+  //   echo "<hr>";//表示
         
-    //echo $edit_name;
-    $edit_comment=$row['comment'];
-    //echo $edit_comment;
-    $edit_photo=$row['photo'];
-  }
+  //   //echo $edit_name;
+  //   $edit_comment=$row['comment'];
+  //   //echo $edit_comment;
+  //   $edit_photo=$row['photo'];
+  // }
 ?>
  
    
