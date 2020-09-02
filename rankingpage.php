@@ -20,9 +20,11 @@
         $name_time[$row["username"]] = $logintime;
     }
     asort($name_time);
-    $keys = array_keys($name_time);
-    foreach($keys as $row){
-        echo $row;
+    $number = 0;
+    foreach($name_time as $key => $row){
+        $number++;
+        echo $number."位:　";
+        echo $key."さん: ".$row."起床です。";
         echo "<br>";
     }
 ?>
