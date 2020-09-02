@@ -166,9 +166,9 @@
     }
     login($name_ID);
     echo get_username($name_ID);
-    echo "<br>目標起床時間";
+    echo "<br>おきるじかん";
     echo wakeup_get($name_ID);
-    echo "<br>現在時間と目標起床時間";
+    echo "<br>いまのじかんとおきるじかん";
     echo wakeupflag_update($name_ID);
     // ここでログインしている$user_nameを変えるだけでおそらくユーザーを変えることができる。
     // full_testshow($user_name);
@@ -246,9 +246,9 @@
 <body>
     <form action="" method="POST">
             <div class="wakeup">
-                <th>目標時間設定<th>
+                <th>もくひょうじかんせってい<th>
                 <p><input type="time" name="wakeuptime"></p>
-                <p><input type="submit" name="submit_time" value="設定"></p>
+                <p><input type="submit" name="submit_time" value="せってい"></p>
             </div>
     </form>
     <div class="container">
