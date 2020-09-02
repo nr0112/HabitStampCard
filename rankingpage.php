@@ -23,6 +23,7 @@
     $keys = array_keys($name_time);
     foreach($keys as $row){
         echo $row;
+        echo "<br>";
     }
 ?>
 <!DOCTYPE html>
