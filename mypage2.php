@@ -14,7 +14,7 @@ $pdo =pdo_connect();
 
 $edit_comment='';
 $edit_photo='';
-$id=1;
+$id = $_SESSION['ID'];
 $name_id = "";
 $name_id .= "user_ID_".$id;
 // ↑で$idを数字から名前に加工
@@ -76,7 +76,7 @@ $name_id .= "user_ID_".$id;
             $stmt-> bindParam(':comment', $comment, PDO::PARAM_STR);
             $stmt-> bindParam(':photo', $uni_photo, PDO::PARAM_STR);
             $stmt->execute();
-            echo '画像をアップロードしました';
+            
         } else {
             echo '画像ファイルではありません<br>';
         }
@@ -105,7 +105,7 @@ $name_id .= "user_ID_".$id;
       
       echo $row['date'].',';
       echo $row['comment'].',';
-      echo"<img src='photos/'".$uni_photo."width=300 height=300 alt=''></br>";
+      echo "<img src='photos/$uni_photo'width=300 height=300 alt=''><br>";
       
       echo "<hr>";//表示
       
@@ -115,9 +115,10 @@ $name_id .= "user_ID_".$id;
     foreach ($results as $row){
       //$rowの中にはテーブルのカラム名が入る
       
-      echo $row['date'].',';
-      echo $row['comment'].',';
-      echo $row['photo'].',';
+      echo $row['date'].'<br>';
+      echo $row['photo'].'<br>';
+      echo $row['comment'].'<br>';
+      
       
       echo "<hr>";//表示
       
