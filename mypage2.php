@@ -12,6 +12,8 @@
 require_once("pdo.php");
 $pdo =pdo_connect();
 
+$edit_comment='';
+$edit_photo='';
 $id=1;
 $name_id = "";
 $name_id .= "user_ID_".$id;
@@ -41,7 +43,7 @@ $name_id .= "user_ID_".$id;
  
       $sql = "SELECT * FROM $name_id  WHERE date=:date";
       $stmt = $pdo->prepare($sql);
-      $stmt->bindParam(':date', $date, PDO::PARAM_STR);
+      $stmt->bindParam(':date', $date);
       $stmt->execute();
       
       $results = $stmt->fetchAll();//実行結果を検索
@@ -61,16 +63,16 @@ $name_id .= "user_ID_".$id;
     $file = "photos/$uni_photo";//保存先を指定
 
     //if (!empty($_FILES['photo']['name'])) {//ファイルが選択されていれば$uni_photoにファイル名を代入
-        move_uploaded_file($_FILES['photo']['tmp_name'], './photos/' . $uni_photo);//imagesディレクトリにファイル保存
+        move_uploaded_file($_FILES['photo']['name'], './photos/' . $uni_photo);//imagesディレクトリにファイル保存
         if (exif_phototype($file)) {//画像ファイルかのチェック
             echo '画像をアップロードしました';
 
             $sql =$pdo->prepare("UPDATE　$name_id SET comment=:comment,photo=:photo WHERE date=:date");//困ったら""を使う.where=if文　日付毎にファイルがつくられている　dateが同じ時にこれを実行する
 
             //$sql =$pdo->prepare("INSERT into　$name_id (date,logintime,wakeupflag,photo,comment) VALUES (:date,now(),1,:photo,:comment");
-            $stmt-> bindParam(':date',$date, PDO::PARAM_STR);
-            $stmt-> bindParam(':comment',$comment, PDO::PARAM_STR);
-            $stmt-> bindParam(':photo',$uni_photo, PDO::PARAM_STR);
+            $stmt-> bindParam(':date', $date);
+            $stmt-> bindParam(':comment', $comment, PDO::PARAM_STR);
+            $stmt-> bindParam(':photo', $uni_photo, PDO::PARAM_STR);
             $stmt->execute();
         } else {
             echo '画像ファイルではありません';
@@ -80,26 +82,30 @@ $name_id .= "user_ID_".$id;
 
     if(isset($_POST["delete"])){
     
-       $sql = "DELETE FROM $name_id comment=:comment,photo=:photo WHERE date=:date";
-       $stmt = $pdo->prepare($sql);
-       $stmt-> bindParam(':date', $date, PDO::PARAM_STR);
+        $comment="";
+        $photo="";
+        $sql=$pdo->prepare("UPDATE $name_id SET comment=:comment,photo=:photo WHERE date=:date");
+       $stmt-> bindParam(':date', $date);
+       $stmt-> bindParam(':comment', $comment,PDO::PARAM_STR);
+       $stmt-> bindParam(':photo', $uni_photo,PDO::PARAM_STR);
        $stmt->execute();
     }  
  
 ?>
  
-<?php 
-   // その日付の画像が登録されているかを確認します
-  if ($edit_photo!=null){
-    echo "<img src='photos/".$edit_photo."'width=300 height=300 alt=''>.</br>";
-  }
- ?>
- 
+   
   <form action="" method="post" enctype="multipart/form-data">
+  <?php
+  //その日付の画像が登録されているかを確認
+  if($edit_photo!=null){
+      echo"<img src='photos/'".$edit_photo."width=300 height=300 alt=''></br>";
+  }
+  ?>
+
   
-  <div class="item" >
+  <div class="item">
       <label for="comment">日記:</label>
-        <textarea id="comment"  name="comment" placeholder="ここには自由にコメントを記入してください" rows="8" cols="40" style="vertical-align:middle;"><?php echo $edit_comment; ?></textarea> 
+        <textarea id="comment"  name="comment" placeholder="ここには自由にコメントを記入してください" rows="8" cols="40" style="vertical-align:middle;"><?php echo $edit_comment;?></textarea> 
     <!--行数　row 文字数　cols cssコード：style=""　vertical-align 縦方向のそろえ方　middle　位置-->
     </div><br>
  
