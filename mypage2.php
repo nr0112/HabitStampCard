@@ -105,7 +105,7 @@ $name_id .= "user_ID_".$id;
       
       echo $row['date'].',';
       echo $row['comment'].',';
-      echo"<img src='photos/'".$uni_photo."width=300 height=300 alt=''></br>";
+      echo "<img src='photos/$uni_photo' width=300 height=300 alt=''><br>";
       
       echo "<hr>";//表示
       

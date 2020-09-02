@@ -45,4 +45,7 @@
     }
     
     ?>
+    <a href="loginpage.php">ログインページ</a>
+    <a href="rankingpage.php">ランキングページ</a>
+    <a href="logoutpage.php">ログアウト</a>
 </html>
