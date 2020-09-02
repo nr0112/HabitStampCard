@@ -69,7 +69,7 @@
                     $_SESSION["username"] = $result['username'];
                     $_SESSION["ID"] = $result['id'];
                     //mypage1へリダイレクト
-                    header("Location: https://tb-220025.tech-base.net/mypage1.php");
+                    header("Location: mypage1.php");
                     //処理終了
                     exit();
 
