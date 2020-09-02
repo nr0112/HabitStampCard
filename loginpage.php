@@ -9,7 +9,7 @@
     <body>
     
     <header>
-        <h1>習慣スタンプカード</h1>
+        <h1>スタンプしゅうかん</h1>
     </header>
 
     <main class="form">
