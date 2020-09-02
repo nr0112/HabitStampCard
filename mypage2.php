@@ -139,11 +139,11 @@
   
   <div class="item">
       <label for="comment">にっき:</label>
-        <textarea id="comment"  name="comment" placeholder="ここには自由にコメントを記入してください" rows="8" cols="40" style="vertical-align:middle;"></textarea> 
+        <textarea id="comment"  name="comment" placeholder="ここにじゆうにかいてね" rows="8" cols="40" style="vertical-align:middle;"></textarea> 
     <!--行数　row 文字数　cols cssコード：style=""　vertical-align 縦方向のそろえ方　middle　位置-->
     </div><br>
  
-     <p>アップロードがぞう</p>
+     <p>きょうのしゃしん</p>
      <input type="file" name="photo">
      <button><input type="submit" name="approve" value="おくる"></button>
   <br><br>
