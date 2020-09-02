@@ -36,7 +36,7 @@
         $managerID=$_POST["managerID"];
         $managerPASS=$_POST["managerPASS"];
         //あらかじめ決めたパスワードと一致していたときにログイン
-        if ($managerID=="oneteam_second" && $managerPASS="oneteam"){
+        if ($managerID=="***" && $managerPASS="***"){
             //管理者用ページにリダイレクト
             header("Location: managementpage.php");
         }
