@@ -58,7 +58,7 @@
   {
     
     $comment=$_POST["comment"];//コメント
-    if(isset($_FILES["photo"]))
+    if(is_uploaded_file($_FILES["photo"]["tmp_name"]))
     {
       $photo=$_FILES["photo"];
       $uni_photo = uniqid(mt_rand(), true);//ファイル名をユニーク化
@@ -67,7 +67,8 @@
       //if (!empty($_FILES['photo']['name'])) {//ファイルが選択されていれば$uni_photoにファイル名を代入
       move_uploaded_file($_FILES['photo']['tmp_name'], $file); //photosディレクトリにファイル保存
       if (exif_imagetype($file)) 
-      {//画像ファイルかのチェック
+      {
+        //画像ファイルかのチェック
         $stmt=$pdo->prepare("UPDATE $name_id SET comment=:comment,photo=:photo WHERE date=:date");//困ったら""を使う.where=if文　日付毎にファイルがつくられている　dateが同じ時にこれを実行する
         //$sql =$pdo->prepare("INSERT into　$name_id (date,logintime,wakeupflag,photo,comment) VALUES (:date,now(),1,:photo,:comment");
         $stmt-> bindParam(':date', $date);
