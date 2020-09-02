@@ -93,7 +93,25 @@ $name_id .= "user_ID_".$id;
        $stmt-> bindParam(':photo', $uni_photo,PDO::PARAM_STR);
        $stmt->execute();
     }  
+    
+    $results = $stmt->fetchAll();//実行結果を検索
+    foreach ($results as $row){
+      //$rowの中にはテーブルのカラム名が入る
+      
+      echo $row['date'].',';
+      echo $row['comment'].',';
+      echo $row['photo'].',';
+      
+      echo "<hr>";//表示
+      
+//echo $edit_name;
+       $edit_comment=$row['comment'];
+//echo $edit_comment;
+       $edit_photo=$row['photo'];
+  }    
  
+  
+}
 ?>
  
    
