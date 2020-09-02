@@ -38,7 +38,7 @@
     </head>
     <body>
     <a href="loginpage.php">ログインページ</a>
-    <a href="rankingpage.php">ランキングページ</a>
+    <a href="mypage1.php">マイページ</a>
     <a href="logoutpage.php">ログアウト</a>
     </body>
 </html>
