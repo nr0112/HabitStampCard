@@ -245,7 +245,13 @@
     
 </head>
 <body>
-
+    <form action="" method="POST">
+            <div class="wakeup">
+                <th>目標時間設定<th>
+                <p><input type="time" name="wakeuptime"></p>
+                <p><input type="submit" name="submit_time" value="設定"></p>
+            </div>
+    </form>
     <div class="container">
     <h3><a href="?ym=<?php echo $prev; ?>">&lt;</a> <?php echo $html_title; ?> <a href="?ym=<?php echo $next; ?>">&gt;</a></h3>
         <table class="table table-bordered">
@@ -268,13 +274,6 @@
             ?>
         </table>
     </div>
-    <form action="" method="POST">
-                <div class="wakeup">
-                        <th>目標時間設定<th>
-                        <p><input type="time" name="wakeuptime"></p>
-                        <p><input type="submit" name="submit_time" value="設定"></p>
-                </div>
-    </form>
     <footer>
         <a href="loginpage.php">ログインページ</a>
         <a href="rankingpage.php">ランキングページ</a>
