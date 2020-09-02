@@ -37,5 +37,6 @@
 
     </head>
     <body>
+    <a href="mypage1.php"></a>
     </body>
 </html>
