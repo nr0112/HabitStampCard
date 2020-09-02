@@ -37,6 +37,8 @@
 
     </head>
     <body>
-    <a href="mypage1.php"></a>
+    <a href="loginpage.php">ログインページ</a>
+    <a href="mypage1.php">マイページ</a>
+    <a href="logoutpage.php">ログアウト</a>
     </body>
 </html>
