@@ -12,12 +12,12 @@
         $ymj = date('Y-m-j', mktime(0, 0, 0, date('m', $timestamp), $day, date('Y', $timestamp)));
         require_once("pdo.php");
         $pdo = pdo_connect();
-        $select = "SELECT * FROM $user_name WHERE date=:date";
+        $select = "SELECT wakeupflag FROM $user_name WHERE date=:date";
         $stmt = $pdo->prepare($select);
         $stmt ->bindValue(':date', $ymj);
         $stmt->execute();
-        $results = $stmt->fetchAll();
-        if(count($results) != 0){
+        $results = $stmt->fetch(PDO::FETCH_COLUMN);
+        if($results == 1){
         return TRUE;
         }
     }
@@ -84,7 +84,6 @@
         $stmt -> bindParam(':wakeup', $wakeuptime_def);
         $stmt -> bindValue(':id', $id, PDO::PARAM_INT);
         $stmt -> execute();
-        
     }
     function wakeupflag_update($user_name){
         require_once("pdo.php");
