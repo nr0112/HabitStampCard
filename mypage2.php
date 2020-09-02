@@ -129,15 +129,13 @@ $name_id .= "user_ID_".$id;
       }
      
     }
-      
-  }    
 
     $results = $stmt->fetchAll();//実行結果を検索
     foreach ($results as $row){
       //$rowの中にはテーブルのカラム名が入る
       
       echo $row['photo'].'<br>';
-      echo $row['date'].'<br>'
+      echo $row['date'].'<br>';
       echo $row['comment'].'<br>';
       
       
