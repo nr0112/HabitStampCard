@@ -155,6 +155,9 @@ $name_id .= "user_ID_".$id;
     <input type="submit" name="delete" value="削除"> 
   
    </form>
+   <a href="loginpage.php">ログインページ</a>
+   <a href="rankingpage.php">ランキングページ</a>
+   <a href="logoutpage.php">ログアウト</a>
    
   </body>
 </html>
