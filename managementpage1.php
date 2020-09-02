@@ -246,6 +246,6 @@
             </table>
         </div>
 
-    <footer><a href="https://tb-220025.tech-base.net/loginpage.php">ログインページ</a></footer>
+    <footer><a href="loginpage.php">ログインページ</a></footer>
     </body>
 </html>
