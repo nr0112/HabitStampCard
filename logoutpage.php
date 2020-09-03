@@ -2,12 +2,14 @@
 
 <!DOCTYPE html>
 <html lang="ja">
-<div style="background-color: peachpuff">
+
     <head>
         <meta charset="UTF-8">
-        <title><span style="color: sienna">ログアウト画面</span></title>
+        <title>ログアウト画面</title>
     </head>
+    
     <body>
+    <div style="background-color: peachpuff">
     <?php
     session_start();
 
