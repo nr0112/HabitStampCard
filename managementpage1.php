@@ -34,6 +34,10 @@
                 color: blue;
             }
 
+            body{
+                background-color: peachpuff;
+            }
+
         </style>
     
     </head>
