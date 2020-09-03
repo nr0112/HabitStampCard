@@ -2,9 +2,10 @@
 
 <!DOCTYPE html>
 <html lang="ja">
+<div style="background-color: peachpuff">
     <head>
         <meta charset="UTF-8">
-        <title>ログアウト画面</title>
+        <title><span style="color: sienna">ログアウト画面</span></title>
     </head>
     <body>
     <?php
@@ -23,7 +24,7 @@
     //---------------------------------------------------------------------------
     ?>
     <br>
-    <a href="loginpage.php">ログイン</a>
-
+    <a href="loginpage.php"><span style="color: sienna">ログイン</span></a>
+    </div>
     </body>
 </html>
