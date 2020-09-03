@@ -23,11 +23,9 @@
                 text-decoration: none;
                 float: right;
             }
-         
-             body{
+            body{
                 background-color: peachpuff;
             }
-
         </style>
     </head>
     <body>
@@ -44,7 +42,7 @@
           $managerID=$_POST["managerID"];
           $managerPASS=$_POST["managerPASS"];
           //あらかじめ決めたパスワードと一致していたときにログイン
-          if ($managerID=="***" && $managerPASS="***"){
+          if ($managerID=="oneteam" && $managerPASS="oneteam2"){
               //管理者用ページにリダイレクト
               header("Location: managementpage1.php");
           }
