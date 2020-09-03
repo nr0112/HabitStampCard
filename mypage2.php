@@ -6,6 +6,7 @@
     <title>diary</title>
 </head>
 <body>
+<div style="background-color: peachpuff">
  
 <?php
 
@@ -136,14 +137,14 @@
     }
   ?>
 
-<div style="background-color: peachpuff">
+
   <div class="item">
-      <label for="comment">にっき:</label>
+      <label for="comment"><span style="color: sienna">にっき:</span></label>
         <textarea id="comment"  name="comment" placeholder="ここにじゆうにかいてね" rows="8" cols="40" style="vertical-align:middle;"></textarea> 
     <!--行数　row 文字数　cols cssコード：style=""　vertical-align 縦方向のそろえ方　middle　位置-->
     </div><br>
  
-     <p>きょうのしゃしん</p>
+     <p><span style="color: sienna">きょうのしゃしん</span></p>
      <input type="file" name="photo">
      <button><input type="submit" name="approve" value="おくる"></button>
   <br><br>
@@ -151,9 +152,9 @@
   
    </form>
   
-   <a href="mypage1.php">カレンダー</a>
-   <a href="rankingpage.php">ランキングページ</a>
-   <a href="logoutpage.php">ログアウト</a>
+   <a href="mypage1.php"><span style="color: sienna">カレンダー</span></a>
+   <a href="rankingpage.php"><span style="color: sienna">ランキングページ</span></a>
+   <a href="logoutpage.php"><span style="color: sienna">ログアウト</span></a>
    </div>
   </body>
 </html>
