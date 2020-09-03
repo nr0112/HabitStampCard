@@ -34,7 +34,7 @@
     </main>
 
     <footer>
-    <a href="management_loginpage.php">管理者ページ</a>
+    <a href="management_loginpage.php" style="text-decoration: none;">管理者ページ</a>
 
     <div class="message">
     <?php
