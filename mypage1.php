@@ -130,6 +130,17 @@
         }
         return $results;
     }
+    function logintime_get($user_ID){
+        require_once("pdo.php");
+        $pdo = pdo_connect();
+        global $today;
+        $select = "SELECT logintime FROM $user_ID WHERE date=:date";
+        $stmt = $pdo->prepare($select);
+        $stmt ->bindValue(':date', $today);
+        $stmt ->execute();
+        $results = $stmt->fetch(PDO::FETCH_COLUMN);
+        return $results;
+    }
     date_default_timezone_set('Asia/Tokyo');
 
     if(isset($_GET['ym'])){
@@ -165,11 +176,17 @@
         wakeuptime_set($name_ID, $wakeuptime_def);
     }
     login($name_ID);
-    echo get_username($name_ID);
-    echo "<br>おきるじかん";
-    echo wakeup_get($name_ID);
-    echo "<br>きょうはおきれたね！えらい！";
-    echo wakeupflag_update($name_ID);
+    echo "<h3>".get_username($name_ID)."さん　おはよう！</h3>";
+    echo "おきるじかん:  ".wakeup_get($name_ID);
+    echo "<br>きょうおきたじかん:  ".date('H;i', strtotime(logintime_get($name_ID)));
+    if(catchTrue(date('j'), $name_ID))
+    {
+        echo "<br>きょうははやおきできたね！えらい！";
+    }
+    else
+    {
+        echo "<br>きょうはまにあわなかったけど、あしたはがんばろう！";
+    }
     // ここでログインしている$user_nameを変えるだけでおそらくユーザーを変えることができる。
     // full_testshow($user_name);
     $weeks = [];
