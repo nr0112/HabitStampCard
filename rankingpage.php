@@ -39,5 +39,6 @@
             }
         ?>
     <a href="mypage1.php">マイページへ</a>
+    <a href="logoutpage.php">ログアウト</a>
     </body>
 </html>
