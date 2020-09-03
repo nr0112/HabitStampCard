@@ -109,22 +109,28 @@
   $stmt->bindParam(':date', $date);
   $stmt->execute();
   $results = $stmt->fetchAll();//実行結果を検索
-  foreach ($results as $row)
+  if(count($results) != 0){
+    foreach ($results as $row)
+    {
+      //$rowの中にはテーブルのカラム名が入る
+      $show_photo=$row['photo'];
+      if($show_photo=="")
+      {
+        echo $row['date'].'<br>';
+        echo $row['comment'].'<br>';
+      }
+      else
+      {
+        echo $row['date'].'<br>';
+        echo $row['comment'].'<br>';          
+        echo "<img src='photos/$show_photo'width=300 height=300 alt=''><br>";
+      }
+          
+    }
+  }
+  else
   {
-    //$rowの中にはテーブルのカラム名が入る
-    $show_photo=$row['photo'];
-    if($show_photo=="")
-    {
-      echo $row['date'].'<br>';
-      echo $row['comment'].'<br>';
-    }
-    else
-    {
-      echo $row['date'].'<br>';
-      echo $row['comment'].'<br>';          
-      echo "<img src='photos/$show_photo'width=300 height=300 alt=''><br>";
-    }
-        
+    echo "この日はログインしてないよ";
   }
 ?>
  
