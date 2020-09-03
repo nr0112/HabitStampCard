@@ -136,7 +136,7 @@
     }
   ?>
 
-  
+<div style="background-color: peachpuff">
   <div class="item">
       <label for="comment">にっき:</label>
         <textarea id="comment"  name="comment" placeholder="ここにじゆうにかいてね" rows="8" cols="40" style="vertical-align:middle;"></textarea> 
@@ -154,6 +154,6 @@
    <a href="mypage1.php">カレンダー</a>
    <a href="rankingpage.php">ランキングページ</a>
    <a href="logoutpage.php">ログアウト</a>
-   
+   </div>
   </body>
 </html>
