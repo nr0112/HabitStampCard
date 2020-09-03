@@ -230,7 +230,7 @@
             login($name_ID);
             echo "<h1>".get_username($name_ID)."さん　おはよう！</h1>";
             echo "おきるじかん:  ".wakeup_get($name_ID);
-            echo "<br>きょうおきたじかん:  ".date('H;i', strtotime(logintime_get($name_ID)));
+            echo "<br>きょうおきたじかん:  ".date('H:i', strtotime(logintime_get($name_ID)));
             if(catchTrue(date('j'), $name_ID))
             {
                 echo "<br>きょうははやおきできたね！えらい！";
