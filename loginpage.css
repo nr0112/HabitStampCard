@@ -43,3 +43,7 @@ footer a{
     float: right;
 }
 
+a{
+    text-decoration: none;
+}
+
