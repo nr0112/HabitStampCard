@@ -8,16 +8,20 @@
             legend{
                 font-size: 20px;
                 width: 200px;
-                height: 25px;
-                background-color: skyblue;
+                height: 30px;
+                background-color: orange;
+                margin-bottom: 20px;
             }
             label, input{
                 display: block;
-                padding-top: 10px;
-                padding-bottom: 10px;
+            }
+            input{
+                margin-bottom: 10px;
+                padding: 5px;
             }
             a{
                 text-decoration: none;
+                float: right;
             }
         </style>
     </head>
@@ -29,24 +33,25 @@
                 <label><input type="submit" name="manager_submit"></label>
         </form>
         <a href="logoutpage.php">ログアウト</a>
-    </body>
-    <?php
+        <div class="message">
+        <?php
+        if (isset($_POST["managerID"]) && isset($_POST["managerPASS"])){
+          $managerID=$_POST["managerID"];
+          $managerPASS=$_POST["managerPASS"];
+          //あらかじめ決めたパスワードと一致していたときにログイン
+          if ($managerID=="***" && $managerPASS="***"){
+              //管理者用ページにリダイレクト
+              header("Location: managementpage1.php");
+          }
+       
+        }elseif($_POST["managerID"]="" && $_POST["managerPASS"]=""){
+          echo '<br>IDとパスワードを入力してください。管理者しかログインできません。';
+        
+        }else{
+          echo '<br>管理者用ページにログインできません。IDかパスワードが間違っています！';
+        }  
 
-    if (isset($_POST["managerID"]) && isset($_POST["managerPASS"])){
-        $managerID=$_POST["managerID"];
-        $managerPASS=$_POST["managerPASS"];
-        //あらかじめ決めたパスワードと一致していたときにログイン
-        if ($managerID=="***" && $managerPASS="***"){
-            //管理者用ページにリダイレクト
-            header("Location: managementpage1.php");
-        }
-
-    }elseif($_POST["managerID"]="" && $_POST["managerPASS"]=""){
-        echo 'IDとパスワードを入力してください。管理者しかログインできません。';
-
-    }else{
-        echo '管理者用ページにログインできません。IDかパスワードが間違っています！';
-    }
-    
-    ?>
+        ?>
+        </div>
+</body>
 </html>
