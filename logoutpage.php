@@ -7,7 +7,11 @@
         <meta charset="UTF-8">
         <title>ログアウト画面</title>
     </head>
-    
+<style>
+    body{
+                background-color: peachpuff;
+            }
+</style>
     <body>
     <div style="background-color: peachpuff">
     <?php
