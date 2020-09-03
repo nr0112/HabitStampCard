@@ -42,6 +42,9 @@
         h2{
             background-color:peachpuff;
         }
+        body{
+            background-color:peachpuff;
+        }
     </style>
     
 </head>
@@ -225,7 +228,7 @@
                 wakeuptime_set($name_ID, $wakeuptime_def);
             }
             login($name_ID);
-            echo get_username($name_ID)."さん　おはよう！<br><br>";
+            echo "<h1>".get_username($name_ID)."さん　おはよう！</h1>";
             echo "おきるじかん:  ".wakeup_get($name_ID);
             echo "<br>きょうおきたじかん:  ".date('H;i', strtotime(logintime_get($name_ID)));
             if(catchTrue(date('j'), $name_ID))
