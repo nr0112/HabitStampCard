@@ -1,22 +1,42 @@
 @charset "utf-8";
 
-header{
-    background-color: paleturquoise;
+body{
+    font-family: 'monospace';
 }
 
-.form{
-    width: 500px;
-    margin-right: auto;
+header{
+    width: 1200px;
     margin-left: auto;
+    margin-right: auto;
+    background-color: orange;
+    text-align: center;
+    font-size: 15px;
+}
+
+
+.form{
+    width: 1200px;
+    background-color:peachpuff;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form_set{
+    display: flex;
+    padding: 30px;
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .set{
-    float: left;
-    padding: 20px;
-}
+    margin-left: auto;
+    margin-right: auto;
+} 
 
 footer{
     clear: left;
+
 }
 
 footer a{
