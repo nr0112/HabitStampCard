@@ -33,6 +33,10 @@
             th:nth-of-type(7), td:nth-of-type(7) {
                 color: blue;
             }
+            input{
+                width: 80px;
+                height: 30px;
+            }
 
         </style>
     
@@ -41,9 +45,19 @@
         <h1>管理者専用ページ</h1>
         <p>カレンダーを閲覧したいユーザーIDを入力してください</p>
 
+        <?php
+        require_once("pdo.php");
+        $pdo = pdo_connect();
+        $sql = 'SELECT MAX(id) FROM db_users';
+        $stmt = $pdo -> query($sql);
+        $maxid = $stmt -> fetch(PDO::FETCH_COLUMN);
+        // echo $maxid;
+        ?>
+    
+
         <form arction="" method="POST">
         <!-- user_idを指定するとその人のカレンダーを閲覧することができる -->
-            <input type="number" name="userID" min=1>
+            <input type="number" name="userID" min=1 max=<?php echo $maxid ?>>
             <input type="submit" name="user_reference" value="閲覧">
         </form>
         
