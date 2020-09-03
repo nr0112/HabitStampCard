@@ -222,10 +222,12 @@
 
 
             if(isset($_POST["submit_time"])){
+                if($_POST["wakeuptime"] != ""){
                 $wakeuptime_def = $_POST["wakeuptime"];
                 // echo $wakeuptime_def;
                 $now_time = date('H:i');
                 wakeuptime_set($name_ID, $wakeuptime_def);
+                }
             }
             login($name_ID);
             echo "<h1>".get_username($name_ID)."さん　おはよう！</h1>";
