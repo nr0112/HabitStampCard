@@ -16,6 +16,9 @@
                 padding-top: 10px;
                 padding-bottom: 10px;
             }
+            a{
+                text-decoration: none;
+            }
         </style>
     </head>
     <body>
@@ -25,9 +28,6 @@
                 <label><input type="text" name="managerPASS" placeholder="管理者用パスワード"></label>
                 <label><input type="submit" name="manager_submit"></label>
         </form>
-
-        <a href="loginpage.php">ログインページ</a>
-        <a href="rankingpage.php">ランキングページ</a>
         <a href="logoutpage.php">ログアウト</a>
     </body>
     <?php
@@ -38,7 +38,7 @@
         //あらかじめ決めたパスワードと一致していたときにログイン
         if ($managerID=="***" && $managerPASS="***"){
             //管理者用ページにリダイレクト
-            header("Location: managementpage.php");
+            header("Location: managementpage1.php");
         }
 
     }elseif($_POST["managerID"]="" && $_POST["managerPASS"]=""){
