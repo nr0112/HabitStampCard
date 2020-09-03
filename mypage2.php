@@ -150,7 +150,7 @@
     <input type="submit" name="delete" value="けす"> 
   
    </form>
-   <a href="loginpage.php">ログインページ</a>
+  
    <a href="mypage1.php">カレンダー</a>
    <a href="rankingpage.php">ランキングページ</a>
    <a href="logoutpage.php">ログアウト</a>
