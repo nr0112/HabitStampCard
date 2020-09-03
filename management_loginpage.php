@@ -23,6 +23,11 @@
                 text-decoration: none;
                 float: right;
             }
+         
+             body{
+                background-color: peachpuff;
+            }
+
         </style>
     </head>
     <body>
