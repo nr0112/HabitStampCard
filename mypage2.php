@@ -109,7 +109,8 @@
   $stmt->bindParam(':date', $date);
   $stmt->execute();
   $results = $stmt->fetchAll();//実行結果を検索
-  if(count($results) != 0){
+  if(count($results) != 0)
+  {
     foreach ($results as $row)
     {
       //$rowの中にはテーブルのカラム名が入る
